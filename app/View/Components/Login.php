@@ -32,7 +32,7 @@ class Login extends Component
             //buscar la contraseña del cliente y comprobar si es correcta
             if (\Illuminate\Support\Facades\Hash::check($credentials['password'], $cliente->password)) {
                 //si es correcta, iniciar sesión
-                //$request->session()->put('cliente', $cliente);
+                $request->session()->put('cliente', $cliente);
                 return redirect()->route('principal');
             } else {
                 // Password is incorrect
