@@ -1,6 +1,6 @@
 <nav>
     <ul>
-        <li><a href=""><img src="" alt=""></a></li>
+        <li><a href=""><img src="{{ asset('img/logo-light.png') }}" alt=""></a></li>
         @if (Route::has('login'))
             @auth
                 <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
@@ -9,8 +9,9 @@
 
                 @if (Route::has('register'))
                     <li><a href="{{ route('register') }}">Register</a></li>
-                @endif
-            @endauth
-        <li><a href="/about">About</a></li>
+                @endauth
+            @endif
+        @endif
+            <li><a href="/about">About</a></li>
     </ul>
 </nav>

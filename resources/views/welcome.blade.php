@@ -8,7 +8,6 @@
     <title>¡Bienvenido a reserva·T!</title>
 </head>
 <body>
-    <x-nav></x-nav>
     <x-navbar-cliente />
 </body>
 </html>
