@@ -6,4 +6,33 @@
 
 :root {
     font-family: "Instrument Sans", sans-serif;
+    --primary-color: #007F5F;
+    --secondary-color: #123524;
+    --light-text: #F6F6F6;
+    --dark-text: #3D3D3D;
 }
+
+nav {
+    background-color: var(--primary-color);
+    display: flex;
+    padding: .5em 1em;
+    list-style: none;
+}
+
+nav .nav-logo {
+    width: 15em;
+
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+nav ul a {
+
+    
+}
+
