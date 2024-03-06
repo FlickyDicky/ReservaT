@@ -17,3 +17,9 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
+Route::post('/login', function () {
+    $loginComponent = new \App\View\Components\Login();
+    $loginComponent->login();
+    
+})->name('login');
+
