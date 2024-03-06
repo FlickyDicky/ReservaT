@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clientes', function (Blueprint $table) {
+        Schema::create('facturas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('apellidos');
-            $table->string('email');
-            $table->string('telefono');
-            $table->string('direccion');
-            $table->string('password');
+            $table->foreignId('cliente_id')->constrained('clientes');
+            $table->foreignId('reserva_id')->constrained('reservas');
+            $table->float('precio_bruto', 8, 2);
+            $table->float('precio_neto', 8, 2);
+            $table->float('impuesto', 4, 2);
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('facturas');
     }
 };
