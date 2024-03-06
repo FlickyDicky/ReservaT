@@ -1,6 +1,6 @@
 <nav>
     <ul>
-        <li><a href=""><img src="{{ asset('img/logo-light.png') }}" alt=""></a></li>
+        <li><a href=""><img src="{{ asset('img/logo-negativo.svg') }}" alt="" style="background-color: blue;"></a></li>
         @if (Route::has('login'))
             @auth
                 <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
