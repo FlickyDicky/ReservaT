@@ -37,7 +37,7 @@ class Registro extends Component
         $cliente->telefono = $request->telefono;
         $cliente->password = Hash::make($request->password);
         $cliente->save();
-
+        echo "Cliente registrado correctamente";
         return redirect()->route('principal');
     }
 
