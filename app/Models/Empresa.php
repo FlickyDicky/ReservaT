@@ -9,5 +9,5 @@ class Empresa extends Model
 {
     use HasFactory;
 
-   
+
 }
