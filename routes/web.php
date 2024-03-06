@@ -22,6 +22,15 @@ Route::post('/login', function () {
     return $loginComponent->login(request());// Call the login method of the component
 })->name('login');
 
+Route::post('/registro', function () {
+    $registroComponent = new \App\View\Components\Registro(); // Create a new instance of the Registro component
+    return $registroComponent->register(request());// Call the register method of the component
+})->name('registro');
+
+Route::get('/registro', function () {
+    return view('components.registro');
+})->name('registroForm');
+
 Route::get('/principal', function () {
     return view('principal');
 })->name('principal');
