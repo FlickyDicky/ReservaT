@@ -7,6 +7,6 @@
     <title>Welcome Page</title>
 </head>
 <body>
-    
+    <x-navbar-cliente />
 </body>
 </html>
