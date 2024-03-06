@@ -5,6 +5,7 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Http\Request;
 
 class Login extends Component
 {
@@ -16,20 +17,33 @@ class Login extends Component
         //
     }
 
-    public function login()
+    public function login(Request $request)
     {
-        $credenciales = request(['email', 'password']);
-        ///buscar todos los email y password en la tabla clientes
-        $cliente = \App\Models\Cliente::where('email', $credenciales['email'])->where('password', $credenciales['password'])->first();
-        //si el email del cliente coincide con el email ingresado
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+    
+        $credentials = $request->only('email', 'password');
+    
+        //buscar el cliente y comprobar si existe
+        $cliente = \App\Models\Cliente::where('email', $credentials['email'])->first();
         if ($cliente) {
-            //guardar el id del cliente en la sesion
-            session(['cliente' => $cliente->id]);
-            return redirect()->route('principal');
+            //buscar la contraseña del cliente y comprobar si es correcta
+            if (\Illuminate\Support\Facades\Hash::check($credentials['password'], $cliente->password)) {
+                //si es correcta, iniciar sesión
+                //$request->session()->put('cliente', $cliente);
+                return redirect()->route('principal');
+            } else {
+                // Password is incorrect
+                return redirect()->route('welcome');
+            }
+        } else {
+            // Email doesn't exist
+            return redirect()->route('welcome');
         }
-
-
-    }
+    
+}
     /**
      * Get the view / contents that represent the component.
      */

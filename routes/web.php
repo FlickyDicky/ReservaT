@@ -15,14 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('principal');
+})->name('welcome');
 
 Route::post('/login', function () {
-    $loginComponent = new \App\View\Components\Login();
-    $loginComponent->login();
-    return view('welcome');
-
+    $loginComponent = new \App\View\Components\Login(); // Create a new instance of the Login component
+    return $loginComponent->login(request());// Call the login method of the component
 })->name('login');
+
+Route::get('/principal', function () {
+    return view('principal');
+})->name('principal');
+
 
 
 
