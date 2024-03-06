@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         \App\Models\Empresa::factory(10)->create();
         \App\Models\Cliente::factory(10)->create();
+        \App\Models\Horario::factory(10)->create();
     }
 }

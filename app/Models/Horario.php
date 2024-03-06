@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Horario extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'empresa_id',
+        'apertura',
+        'cierre',
+    ];
 }
