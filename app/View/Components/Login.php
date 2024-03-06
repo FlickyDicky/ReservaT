@@ -16,10 +16,18 @@ class Login extends Component
         //
     }
 
-    public function login(): void
+    public function login()
     {
         $credenciales = request(['email', 'password']);
-        echo ($credenciales['email'] . ' ' . $credenciales['password']);
+        ///buscar todos los email y password en la tabla clientes
+        $cliente = \App\Models\Cliente::where('email', $credenciales['email'])->where('password', $credenciales['password'])->first();
+        //si el email del cliente coincide con el email ingresado
+        if ($cliente) {
+            //guardar el id del cliente en la sesion
+            session(['cliente' => $cliente->id]);
+            return redirect()->route('principal');
+        }
+
 
     }
     /**
