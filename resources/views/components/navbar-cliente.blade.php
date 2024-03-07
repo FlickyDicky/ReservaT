@@ -11,7 +11,7 @@
             @endif
         @endif
         <li><a href="/about">About</a></li>
-        <form action="{{ route('empresa.register') }}">
+        <form action="{{ route('registro') }}">
             <button>MUESTRANOS TU EMPRESA</button>
         </form>
     </ul>
@@ -26,8 +26,7 @@
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
 
-                <li><a href="{{ route('registro') }}">Register</a></li>
-            @endif
+            <li><a href="{{ route('registro') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
         <li><a href="/">Muestranos tu empresa</a></li>
@@ -45,5 +44,4 @@
             menu.classList.remove('active');
         }
     });
-
 </script>

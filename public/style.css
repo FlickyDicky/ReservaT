@@ -28,9 +28,32 @@ nav {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+nav .nav-links li::before {
+    z-index: 1;
+    content: "";
+    position: absolute;
+    background:var(--light-text-hover);
+    inset: 0;
+    top: -.9em;
+    bottom: 2.8em;
+    left: 50%;
+    right: 50%;
+    border-radius: 20em;
+    transition: right 100ms, left 100ms;
+}
+
+nav .nav-links li:hover::before {
+    right: 0;
+    left: 0;
+}
+
 .burger {
     display: none;
     margin-left: auto;
+}
+
+.burger:hover .line {
+    background: var(--light-text-hover);
 }
 
 .line {
@@ -39,9 +62,8 @@ nav {
     background: var(--light-text);
     margin: .5em;
     border-radius: 2em;
+    transition: background 200ms;
 }
-
-
 
 nav .nav-logo {
     width: 10em;
@@ -62,7 +84,14 @@ nav .drop-down li:hover {
 }
 
 nav .drop-down li {
+    position: relative;
     width: 100%;
+    transition: background 100ms;
+}
+
+nav .drop-down li a {
+    color: var(--light-text);
+    display: block;
 }
 
 nav ul {
@@ -74,6 +103,8 @@ nav ul {
 }
 
 nav ul li {
+    z-index: 2;
+    position: relative;
     align-items: center;
     justify-content: center;
 }
