@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\LoginController;
 
 // ...
 
@@ -43,14 +44,22 @@ Route::get('/principal', function () {
     return view('principal');
 })->name('principal');
 
+/*
 Route::post('/logout', function (Request $request) {
     $request->session()->flush();
     return redirect('/login');
 })->name('logout');
-
+*/
 Route::get('/login', function () {
     return view('components.login');
 })->name('loginForm');
+
+Route::post('/conectar', [LoginController::class, 'login'])->name('conectar');
+
+Route::get('/mostrar_datos', [LoginController::class, 'mostrar_datos'])->name('mostrar_datos');
+
+Route::post('/desconectar', [LoginController::class, 'logout'])->name('desconectar');
+
 
 
 

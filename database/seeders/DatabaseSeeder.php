@@ -20,20 +20,20 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        \App\Models\Empresa::factory(10)->create();
-        \App\Models\Cliente::factory(10)->create();
-        \App\Models\Horario::factory(10)->create();
+        //\App\Models\Empresa::factory(10)->create();
+        //\App\Models\Cliente::factory(10)->create();
+        //\App\Models\Horario::factory(10)->create();
 
-        /*aquí tenemos un seed concreto para un insert de prueba hehe
+        /*aquí tenemos un seed concreto para un insert de prueba hehe*/
         DB::table('clientes')->insert([
-            'nombre' => 'admin',
+            'nombre' => 'ryan',
             'apellidos' => 'admin',
-            'email' => 'admin@admin.com',
+            'email' => 'ryan@admin.com',
             'telefono' => '123456789',
             'direccion' => 'Dirección de prueba',
             'password' => Hash::make('admin'), // password = admin. Hash::make() is a helper function to hash the password before saving it to the database. It uses bcrypt() by default.
             'created_at' => now(),
             'updated_at' => now(),
-        ]);*/
+        ]);
     }
 }
