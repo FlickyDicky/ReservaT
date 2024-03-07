@@ -12,6 +12,13 @@
 </head>
 <body>
     <x-navbar-cliente />
+    <!-- si hay una cookie, mostrar el saludo -->
+    @if (isset($nombre))
+        <h1>¡Hola, {{ $nombre }}! ¿Qué quieres hacer hoy?</h1>
+        <p> Tu email es {{ $email }}</p>
+    @else
+        <h1>¡Bienvenido a reserva·T!</h1>
+    @endif
 
 </body>
 </html>

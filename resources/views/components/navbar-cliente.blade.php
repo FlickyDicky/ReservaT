@@ -7,9 +7,7 @@
             @else
                 <li><a href="{{ route('login') }}">Login</a></li>
 
-                @if (Route::has('register'))
-                    <li><a href="{{ route('register') }}">Register</a></li>
-                @endauth
+                <li><a href="{{ route('registro') }}">Register</a></li>
             @endif
         @endif
             <li><a href="/about">About</a></li>

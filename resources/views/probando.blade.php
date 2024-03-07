@@ -1,5 +1,5 @@
 <h1>
-    El nombre de usuario es {{ $nombre }}.
+
 
 </h1>
 

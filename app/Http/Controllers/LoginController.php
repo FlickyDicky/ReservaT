@@ -26,6 +26,7 @@ class LoginController extends Controller
         if($cliente) {
             if(\Illuminate\Support\Facades\Hash::check($credentials['password'], $cliente->password)) {
                 Cookie::queue('cliente_nombre', $cliente->nombre, 5);
+                Cookie::queue('cliente_email', $cliente->email, 5);
                 return redirect()->route('mostrar_datos'); // Redirige a la ruta 'mostrar_datos'
             } else {
                 return redirect()->route('welcome');
@@ -40,7 +41,8 @@ class LoginController extends Controller
     {
         //dd(Cookie::get('cliente_nombre'));
         $nombre = Cookie::get('cliente_nombre');
-        return view('probando',['nombre' => $nombre]);
+        $email = Cookie::get('cliente_email');
+        return view('welcome',['nombre' => $nombre, 'email' => $email]);
     }
 
     function logout()
