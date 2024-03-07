@@ -23,3 +23,6 @@ Route::post('/login', function () {
     
 })->name('login');
 
+Route::get('register', function () {
+    return view('register.empresa');
+})->name('empresa.register');

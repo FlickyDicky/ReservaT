@@ -6,22 +6,63 @@
 
 :root {
     font-family: "Instrument Sans", sans-serif;
-    --primary-color: #007F5F;
+    --primary-color: #007f5f;
     --secondary-color: #123524;
-    --light-text: #F6F6F6;
-    --dark-text: #3D3D3D;
+    --light-text: #f6f6f6;
+    --light-text-hover: #cacaca;
+    --dark-text: #3d3d3d;
+    --gradient: linear-gradient(
+        90deg,
+        var(--primary-color) 0%,
+        var(--secondary-color) 100%
+    );
 }
 
 nav {
-    background-color: var(--primary-color);
+    position: relative;
+    width: 100%;
+    background: var(--gradient);
     display: flex;
-    padding: .5em 1em;
+    padding: 0.5em 0.5em;
     list-style: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.burger {
+    display: none;
+    margin-left: auto;
+}
+
+.line {
+    width: 2em;
+    height: .25em;
+    background: var(--light-text);
+    margin: .5em;
+    border-radius: 2em;
+}
+
+
+
 nav .nav-logo {
-    width: 15em;
+    width: 10em;
+}
+
+nav .drop-down {
+    display: none;
+    align-items: flex-start; /* Add this line */
+    flex-direction: column;
+    position: absolute;
+    top: 3.3em;
+    left: 0;
+    background: var(--dark-text);
+}
+
+nav .drop-down li:hover {
+    background: var(--primary-color);
+}
+
+nav .drop-down li {
+    width: 100%;
 }
 
 nav ul {
@@ -29,6 +70,7 @@ nav ul {
     align-items: center;
     list-style: none;
     margin: 0;
+    width: 100%;
 }
 
 nav ul li {
@@ -36,12 +78,71 @@ nav ul li {
     justify-content: center;
 }
 
-
-
 nav ul a {
     color: var(--light-text);
     text-decoration: none;
     margin: 0 1em;
     font-size: 1.5em;
+    transition: color 200ms;
 }
 
+nav ul a:hover {
+    color: var(--light-text-hover);
+    text-decoration: none;
+}
+
+nav form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+nav button {
+    font-size: 0.8em;
+    background: var(--light-text);
+    color: var(--dark-text);
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 200ms;
+}
+
+nav button:hover {
+    background: var(--light-text-hover);
+}
+
+.active {
+    display: flex !important;
+}
+
+@media screen and (max-width: 600px) {
+    :root {
+        font-size: 0.8em;
+    }
+
+    .burger {
+        display: block;
+        cursor: pointer;
+    }
+
+    nav .nav-links {
+        display: none;
+    }
+
+    nav .nav-logo {
+        width: 8em;
+    }
+
+    nav .nav-logo img {
+        width: 100%;
+    }
+
+    nav .burger-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+    }
+}

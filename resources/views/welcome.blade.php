@@ -12,6 +12,5 @@
 </head>
 <body>
     <x-navbar-cliente />
-    <x-login />
 </body>
 </html>
