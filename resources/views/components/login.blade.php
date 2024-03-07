@@ -1,5 +1,5 @@
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('conectar') }}">
         @csrf
 
         <div>

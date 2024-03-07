@@ -16,4 +16,9 @@ class Cliente extends Model
         'direccion',
         'password',
     ];
+
+    public function probarCosas()
+    {
+        return 'El nombre del cliente es ' . $this->nombre . ', su email es ' . $this->email . ' y su teléfono es ' . $this->telefono . '.';
+    }
 }
