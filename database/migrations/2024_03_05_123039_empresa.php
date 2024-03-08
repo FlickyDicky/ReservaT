@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->id()->autoIncrement();
 
-            $table->foreignId('usuario_id')->constrained('usuarios')->default(1);
+            $table->foreignId('usuario_id')->constrained('usuarios')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nombre_empresa');
             $table->string('cif');
             $table->string('iban');
