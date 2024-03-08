@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clientes', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('apellidos');
@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('direccion');
             $table->string('password');
+            //crear un campo tipo que solo pueda ser E o C
+            $table->enum('tipo', ['E', 'C']);
+
             $table->timestamps();
         });
     }
