@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        \App\Models\Usuario::factory(10)->create();
-        \App\Models\Empresa::factory(10)->create();
-
-        \App\Models\Horario::factory(10)->create();
+        //\App\Models\Usuario::factory(10)->create();
+        //\App\Models\Empresa::factory(10)->create();
+//
+        //\App\Models\Horario::factory(10)->create();
 
         /*aquí tenemos un seed concreto para un insert de prueba hehe*/
         DB::table('usuarios')->insert([
