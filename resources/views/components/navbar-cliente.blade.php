@@ -7,10 +7,10 @@
             <li><a href="{{ route('login') }}">Login</a></li>
 
 
-            <li><a href="{{ route('components.registro') }}">Register</a></li>
+            <li><a href="{{ route('registro.usuario') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
-        <form action="}}">
+        <form action="{{ route('registro.empresa') }}">
             <button>¿TIENES UNA EMPRESA?</button>
         </form>
     </ul>
@@ -25,10 +25,10 @@
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
 
-            <li><a href="{{ route('components.registro') }}">Register</a></li>
+            <li><a href="{{ route('registro.usuario') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
-        <li><a href="/">¿Tienes una empresa?</a></li>
+        <li><a href=" {{ route('registro.empresa')}}">¿Tienes una empresa?</a></li>
     </ul>
 </nav>
 <script defer>

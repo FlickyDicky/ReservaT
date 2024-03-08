@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\EmpresaController;
 
 // ...
 
@@ -32,12 +33,13 @@ Route::post('/login', function () {
     return $loginComponent->login(request());// Call the login method of the component
 })->name('login');
 
-Route::post('/registro', [RegistroController::class, 'registrar_cliente'])->name('registrar_usuario');
+Route::post('/registro', [ClienteController::class, 'store'])->name('registrar_usuario');
 
+Route::get('/regsitro', [ClienteController::class, 'create'])->name('registro.usuario');
 
-Route::get('/registro', function () {
-    return view('components.registro');
-})->name('components.registro');
+Route::post('/registro-empresa', [EmpresaController::class, 'store'])->name('registrar_empresa');
+
+Route::get('/registro-empresa', [EmpresaController::class, 'create'])->name('registro.empresa');
 
 Route::get('/principal', function () {
     return view('principal');
