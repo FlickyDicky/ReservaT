@@ -1,49 +1,51 @@
 <nav>
     <ul>
-        <li><a href=""><img src="{{ asset('img/logo-negativo.svg') }}" alt="" style="background-color: blue;"></a></li>
+        <li><a href=""><img src="{{ asset('img/logo-negativo.svg') }}" alt=""
+                    style="background-color: blue;"></a></li>
         <!-- si existe una cookie con el nombre 'cliente' -->
         @if (Cookie::get('cliente_nombre'))
 
-                <li><a href="{{ route('mostrar_perfil') }}">Dashboard</a></li>
-                <form action='{{ route('desconectar') }}' method='POST'>
-                    @csrf
-                    <button type='submit'>Desconectar</button>
+            <li><a href="{{ route('mostrar_perfil') }}">Dashboard</a></li>
+            <form action='{{ route('desconectar') }}' method='POST'>
+                @csrf
+                <button type='submit'>Desconectar</button>
+            </form>
+        @else
+            <li><a href="{{ route('login') }}">Login</a></li>
+            <li><a href=""><img src="{{ asset('img/logo-negativo.svg') }}" class="nav-logo" alt=""></a>
+            </li>
+            <ul class="nav-links">
+                @if (Route::has('home'))
+                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                @else
+                    <li><a href="{{ route('login') }}">Login</a></li>
+
+                    @if (Route::has('register'))
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                    @endif
+                @endif
+                <li><a href="/about">About</a></li>
+                <form action="{{ route('registro') }}">
+                    <button>¿TIENES UNA EMPRESA?</button>
                 </form>
-            @else
-                <li><a href="{{ route('login') }}">Login</a></li>
-    <li><a href=""><img src="{{ asset('img/logo-negativo.svg') }}" class="nav-logo" alt=""></a></li>
-    <ul class="nav-links">
-        @if (Route::has('home'))
-            <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
-        @else
-            <li><a href="{{ route('login') }}">Login</a></li>
+            </ul>
+            <div class="burger" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <ul class="drop-down">
+                @if (Route::has('home'))
+                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                @else
+                    <li><a href="{{ route('login') }}">Login</a></li>
 
-            @if (Route::has('register'))
-                <li><a href="{{ route('register') }}">Register</a></li>
-            @endif
-        @endif
-        <li><a href="/about">About</a></li>
-        <form action="{{ route('registro') }}">
-            <button>¿TIENES UNA EMPRESA?</button>
-        </form>
-    </ul>
-    <div class="burger" onclick="toggleMenu()">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-    </div>
-    <ul class="drop-down">
-        @if (Route::has('home'))
-            <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
-        @else
-            <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('registro') }}">Register</a></li>
+                @endif
+                <li><a href="/about">About</a></li>
 
-            <li><a href="{{ route('registro') }}">Register</a></li>
-        @endif
-        <li><a href="/about">About</a></li>
-
-        <li><a href="/">¿Tienes una empresa?</a></li>
-    </ul>
+                <li><a href="/">¿Tienes una empresa?</a></li>
+            </ul>
 </nav>
 <script defer>
     function toggleMenu() {
