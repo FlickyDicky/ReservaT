@@ -12,7 +12,7 @@
         @endif
         <li><a href="/about">About</a></li>
         <form action="{{ route('registro') }}">
-            <button>MUESTRANOS TU EMPRESA</button>
+            <button>¿TIENES UNA EMPRESA?</button>
         </form>
     </ul>
     <div class="burger" onclick="toggleMenu()">
@@ -29,7 +29,7 @@
             <li><a href="{{ route('registro') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
-        <li><a href="/">Muestranos tu empresa</a></li>
+        <li><a href="/">¿Tienes una empresa?</a></li>
     </ul>
 </nav>
 <script defer>

@@ -11,7 +11,7 @@
     <title>¡Bienvenido a reserva·T!</title>
 </head>
 <body>
-    <x-navbar-cliente />
+    <x-navbar-empresa />
     <!-- si hay una cookie, mostrar el saludo -->
     @if (isset($nombre))
         <h1>¡Hola, {{ $nombre }}! ¿Qué quieres hacer hoy?</h1>

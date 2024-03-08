@@ -7,14 +7,21 @@
 :root {
     font-family: "Instrument Sans", sans-serif;
     --primary-color: #007f5f;
-    --secondary-color: #123524;
+    --primary-color-dark: #123524;
+    --complementary-color: #5f007f;
+    --complementary-color-dark: #2d013b;
     --light-text: #f6f6f6;
     --light-text-hover: #cacaca;
     --dark-text: #3d3d3d;
     --gradient: linear-gradient(
         90deg,
         var(--primary-color) 0%,
-        var(--secondary-color) 100%
+        var(--primary-color-dark) 100%
+    );
+    --gradient-complementary: linear-gradient(
+        180deg,
+        var(--complementary-color) 0%,
+        var(--complementary-color-dark) 100%
     );
 }
 
@@ -41,6 +48,7 @@ nav .nav-links li::before {
     border-radius: 20em;
     transition: right 100ms, left 100ms;
 }
+
 
 nav .nav-links li:hover::before {
     right: 0;
@@ -86,7 +94,6 @@ nav .drop-down li:hover {
 nav .drop-down li {
     position: relative;
     width: 100%;
-    transition: background 100ms;
 }
 
 nav .drop-down li a {
