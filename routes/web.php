@@ -60,6 +60,8 @@ Route::get('/mostrar_datos', [LoginController::class, 'mostrar_datos'])->name('m
 
 Route::post('/desconectar', [LoginController::class, 'logout'])->name('desconectar');
 
+Route::get('/mostrar_perfil', [LoginController::class, 'mostrar_daperfil'])->name('mostrar_perfil');
+
 
 
 

@@ -17,14 +17,9 @@ class EmpresaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => $this->faker->name,
+            'nombre_empresa' => $this->faker->name,
             'cif' => $this->faker->text(10),
-            'telefono' => $this->faker->phoneNumber,
-            'email' => $this->faker->unique()->safeEmail,
-            'iban' => $this->faker->text(24),
-            'direccion' => $this->faker->address,
-            'municipio' => $this->faker->city,
-            'password' => $this->faker->password,
+            'iban' => $this->faker->text(24)
         ];
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Cliente>
  */
-class ClienteFactory extends Factory
+class UsuarioFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,6 +22,8 @@ class ClienteFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'telefono' => $this->faker->phoneNumber(),
             'direccion' => $this->faker->address(),
+            'municipio' => $this->faker->city(),
+            'tipo' => $this->faker->randomElement(['E', 'C']),
             'password' => $this->faker->password(),
         ];
     }
