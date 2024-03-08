@@ -1,17 +1,16 @@
 <nav>
     <li><a href=""><img src="{{ asset('img/logo-negativo.svg') }}" class="nav-logo" alt=""></a></li>
     <ul class="nav-links">
-        @if (Route::has('home'))
-            <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+        @if (Cookie::get('cliente_nombre'))
+            <li><a href="{{ route('mostrar_perfil') }}">Dashboard</a></li>
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
 
-            @if (Route::has('register'))
-                <li><a href="{{ route('register') }}">Register</a></li>
-            @endif
+
+            <li><a href="{{ route('registroForm') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
-        <form action="{{ route('registro') }}">
+        <form action="}}">
             <button>¿TIENES UNA EMPRESA?</button>
         </form>
     </ul>
@@ -21,12 +20,12 @@
         <div class="line"></div>
     </div>
     <ul class="drop-down">
-        @if (Route::has('home'))
-            <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+        @if (Cookie::get('cliente_nombre'))
+            <li><a href="{{ route('mostrar_perfil') }}">Dashboard</a></li>
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
 
-            <li><a href="{{ route('registro') }}">Register</a></li>
+            <li><a href="{{ route('registroForm') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
         <li><a href="/">¿Tienes una empresa?</a></li>

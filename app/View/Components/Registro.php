@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
 
 class Registro extends Component
@@ -29,7 +30,7 @@ class Registro extends Component
             'password' => 'required|min:8|confirmed',
         ]);
 
-        $cliente = new Cliente;
+        $cliente = new Usuario();
         $cliente->nombre = $request->name;
         $cliente->apellidos = $request->apellido;
         $cliente->email = $request->email;

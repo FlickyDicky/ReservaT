@@ -58,7 +58,7 @@ Route::post('/conectar', [LoginController::class, 'login'])->name('conectar');
 
 Route::get('/mostrar_datos', [LoginController::class, 'mostrar_datos'])->name('mostrar_datos');
 
-Route::post('/desconectar', [LoginController::class, 'logout'])->name('desconectar');
+Route::get('/desconectar', [LoginController::class, 'logout'])->name('desconectar');
 
 Route::get('/mostrar_perfil', [LoginController::class, 'mostrar_perfil'])->name('mostrar_perfil');
 
