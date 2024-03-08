@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistroController;
 
 // ...
 
@@ -22,7 +23,7 @@ Route::post('/logout', function (Request $request) {
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
@@ -31,14 +32,12 @@ Route::post('/login', function () {
     return $loginComponent->login(request());// Call the login method of the component
 })->name('login');
 
-Route::post('/registro', function () {
-    $registroComponent = new \App\View\Components\Registro(); // Create a new instance of the Registro component
-    return $registroComponent->register(request());// Call the register method of the component
-})->name('registro');
+Route::post('/registro', [RegistroController::class, 'registrar_cliente'])->name('registrar_usuario');
+
 
 Route::get('/registro', function () {
     return view('components.registro');
-})->name('registroForm');
+})->name('components.registro');
 
 Route::get('/principal', function () {
     return view('principal');

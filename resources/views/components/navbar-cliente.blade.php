@@ -7,7 +7,7 @@
             <li><a href="{{ route('login') }}">Login</a></li>
 
 
-            <li><a href="{{ route('registroForm') }}">Register</a></li>
+            <li><a href="{{ route('components.registro') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
         <form action="}}">
@@ -25,7 +25,7 @@
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
 
-            <li><a href="{{ route('registroForm') }}">Register</a></li>
+            <li><a href="{{ route('components.registro') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
         <li><a href="/">¿Tienes una empresa?</a></li>
