@@ -69,6 +69,7 @@ class LoginController extends Controller
         Cookie::queue(Cookie::forget('cliente_telefono'));
         Cookie::queue(Cookie::forget('cliente_direccion'));
         Cookie::queue(Cookie::forget('cliente_tipo'));
+        Cookie::queue(Cookie::forget('cliente_municipio'));
 
         return redirect()->route('welcome');
     }
