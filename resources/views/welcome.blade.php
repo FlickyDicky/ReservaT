@@ -11,7 +11,8 @@
     <title>¡Bienvenido a reserva·T!</title>
 </head>
 <body>
-    <x-navbar-cliente />
+    <!-- si existe una cookie con el nombre cliente_tipo y su valor es C mostrar x-navbar-cliente -->
+    <x-selector-nav />
     <!-- si hay una cookie, mostrar el saludo -->
     @if (isset($nombre))
         <h1>¡Hola, {{ $nombre }}! ¿Qué quieres hacer hoy?</h1>

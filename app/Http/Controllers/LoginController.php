@@ -30,6 +30,8 @@ class LoginController extends Controller
                 Cookie::queue('cliente_apellidos', $cliente->apellidos, 5);
                 Cookie::queue('cliente_telefono', $cliente->telefono, 5);
                 Cookie::queue('cliente_direccion', $cliente->direccion, 5);
+                Cookie::queue('cliente_municipio', $cliente->tipo, 5);
+                Cookie::queue('cliente_tipo', $cliente->tipo, 5);
 
                 return redirect()->route('mostrar_datos'); // Redirige a la ruta 'mostrar_datos'
             } else {
@@ -60,8 +62,14 @@ class LoginController extends Controller
 
     function logout()
     {
+        //forget todas las Cookie
         Cookie::queue(Cookie::forget('cliente_nombre'));
         Cookie::queue(Cookie::forget('cliente_email'));
+        Cookie::queue(Cookie::forget('cliente_apellidos'));
+        Cookie::queue(Cookie::forget('cliente_telefono'));
+        Cookie::queue(Cookie::forget('cliente_direccion'));
+        Cookie::queue(Cookie::forget('cliente_tipo'));
+
         return redirect()->route('welcome');
     }
 }
