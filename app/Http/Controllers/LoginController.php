@@ -21,12 +21,16 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        $cliente = \App\Models\Cliente::where('email', $credentials['email'])->first();
+        $cliente = \App\Models\Usuario::where('email', $credentials['email'])->first();
 
         if($cliente) {
             if(\Illuminate\Support\Facades\Hash::check($credentials['password'], $cliente->password)) {
                 Cookie::queue('cliente_nombre', $cliente->nombre, 5);
                 Cookie::queue('cliente_email', $cliente->email, 5);
+                Cookie::queue('cliente_apellidos', $cliente->apellidos, 5);
+                Cookie::queue('cliente_telefono', $cliente->telefono, 5);
+                Cookie::queue('cliente_direccion', $cliente->direccion, 5);
+
                 return redirect()->route('mostrar_datos'); // Redirige a la ruta 'mostrar_datos'
             } else {
                 return redirect()->route('welcome');
@@ -43,6 +47,15 @@ class LoginController extends Controller
         $nombre = Cookie::get('cliente_nombre');
         $email = Cookie::get('cliente_email');
         return view('welcome',['nombre' => $nombre, 'email' => $email]);
+    }
+
+    function mostrar_perfil(){
+        $nombre = Cookie::get('cliente_nombre');
+        $apellidos = Cookie::get('cliente_apellidos');
+        $email = Cookie::get('cliente_email');
+        $direccion = Cookie::get('cliente_direccion');
+
+        return view('perfil',['nombre' => $nombre, 'email' => $email, 'apellidos' => $apellidos, 'direccion' => $direccion]);
     }
 
     function logout()

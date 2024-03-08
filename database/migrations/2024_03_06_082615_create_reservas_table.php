@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('horario_id')->constrained();
             $table->foreignId('empresa_id')->constrained();
-            $table->foreignId('cliente_id')->constrained();
+            $table->foreignId('usuario_id')->constrained();
             $table->foreignId('servicio_id')->constrained();
             $table->dateTime('fecha_reserva');
             $table->boolean('estado');

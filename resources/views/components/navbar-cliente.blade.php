@@ -26,7 +26,8 @@
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
 
-            <li><a href="{{ route('registro') }}">Register</a></li>
+                <li><a href="{{ route('registro') }}">Register</a></li>
+            @endif
         @endif
         <li><a href="/about">About</a></li>
         <li><a href="/">¿Tienes una empresa?</a></li>
