@@ -12,15 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('empresas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
+            $table->id()->autoIncrement();
+
+            $table->foreignId('usuario_id')->constrained('usuarios')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('nombre_empresa');
             $table->string('cif');
-            $table->string('telefono');
-            $table->string('email');
             $table->string('iban');
-            $table->string('direccion');
-            $table->string('municipio');
-            $table->string('password');
             $table->timestamps();
         });
     }

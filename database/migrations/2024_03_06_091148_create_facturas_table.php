@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cliente_id')->constrained('clientes');
+            $table->foreignId('usuario_id')->constrained('usuarios');
             $table->foreignId('reserva_id')->constrained('reservas');
             $table->float('precio_bruto', 8, 2);
             $table->float('precio_neto', 8, 2);
