@@ -35,8 +35,8 @@ class Login extends Component
                 $request->session()->put('cliente', $cliente);
                 return redirect()->route('principal');
             } else {
-                // Password is incorrect
-                return redirect()->route('welcome');
+                //si no es correcta avisar del error
+                return redirect()->route('loginForm');
             }
         } else {
             // Email doesn't exist
