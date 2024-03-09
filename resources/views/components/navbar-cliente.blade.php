@@ -3,6 +3,7 @@
     <ul class="nav-links">
         @if (Cookie::get('cliente_nombre'))
             <li><a href="{{ route('mostrar_perfil') }}">Dashboard</a></li>
+            <li><a href="{{ route('desconectar') }}">Desconectar</a></li>
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
 
@@ -22,6 +23,7 @@
     <ul class="drop-down">
         @if (Cookie::get('cliente_nombre'))
             <li><a href="{{ route('mostrar_perfil') }}">Dashboard</a></li>
+            <li><a href="{{ route('desconectar') }}">Desconectar</a></li>
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
 

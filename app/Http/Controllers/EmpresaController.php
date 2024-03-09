@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\Models\Empresa;
 use Illuminate\Support\Facades\Hash;
 
 class EmpresaController extends Controller
@@ -49,7 +49,7 @@ class EmpresaController extends Controller
             'cif' => 'required|max:255',
         ]);
 
-        $cliente = new Usuario();
+        $cliente = new Empresa();
         $cliente->nombre = $request->name;
         $cliente->apellidos = $request->apellido;
         $cliente->email = $request->email;
