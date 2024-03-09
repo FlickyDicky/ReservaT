@@ -19,8 +19,4 @@ class Usuario extends Model
         'tipo'
     ];
 
-    public function probarCosas()
-    {
-        return 'El nombre del cliente es ' . $this->nombre . ', su email es ' . $this->email . ' y su teléfono es ' . $this->telefono . '.';
-    }
 }

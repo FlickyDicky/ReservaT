@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 
 
 class ClienteController extends Controller
@@ -29,8 +30,21 @@ class ClienteController extends Controller
         $cliente->password = Hash::make($request->password);
         $cliente->tipo = 'C';
         $cliente->save();
-        echo "Cliente registrado correctamente";
-        return redirect()->route('welcome');
+
+        if (Cookie::get('registro_empresa')){
+            Cookie::queue('usuario_creado', 'true',5);
+            Cookie::queue('usuario_id', $this->buscarId($request->email),5);
+            return redirect()->route('registro.empresa'); // Redirige a la ruta 'registro.empresa'
+        } else {
+            return redirect()->route('welcome');
+        }
+    
+    }
+
+    public function buscarId($email)
+    {
+        $usuario = Usuario::where('email', $email)->first();
+        return $usuario->id;
     }
 
     public function create(){
