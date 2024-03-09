@@ -27,7 +27,7 @@ class Login extends Component
         $credentials = $request->only('email', 'password');
     
         //buscar el cliente y comprobar si existe
-        $cliente = \App\Models\Cliente::where('email', $credentials['email'])->first();
+        $cliente = \App\Models\Usuario::where('email', $credentials['email'])->first();
         if ($cliente) {
             //buscar la contraseña del cliente y comprobar si es correcta
             if (\Illuminate\Support\Facades\Hash::check($credentials['password'], $cliente->password)) {
