@@ -9,10 +9,7 @@ use App\Http\Controllers\EmpresaController;
 
 // ...
 
-Route::post('/logout', function (Request $request) {
-    $request->session()->flush();
-    return redirect('/login');
-})->name('logout');
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

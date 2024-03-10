@@ -28,14 +28,16 @@ class ClienteController extends Controller
         $cliente->municipio = $request->municipio;
         $cliente->telefono = $request->telefono;
         $cliente->password = Hash::make($request->password);
-        $cliente->tipo = 'C';
-        $cliente->save();
 
         if (Cookie::get('registro_empresa')){
+            $cliente->tipo = 'E';
+            $cliente->save();
             Cookie::queue('usuario_creado', 'true',5);
             Cookie::queue('usuario_id', $this->buscarId($request->email),5);
             return redirect()->route('registro.empresa'); // Redirige a la ruta 'registro.empresa'
         } else {
+            $cliente->tipo = 'C';
+            $cliente->save();
             return redirect()->route('welcome');
         }
     
@@ -43,6 +45,7 @@ class ClienteController extends Controller
 
     public function buscarId($email)
     {
+        
         $usuario = Usuario::where('email', $email)->first();
         return $usuario->id;
     }

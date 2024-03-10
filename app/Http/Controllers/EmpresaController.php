@@ -50,9 +50,9 @@ class EmpresaController extends Controller
         $empresa->nombre_empresa = $request->name;
         $empresa->usuario_id = Cookie::get('usuario_id');
         $cif = $request->cif;
-        /*if (!$this->verificarCIF($cif)) {
+        if (!$this->verificarCIF($cif)) {
             return redirect()->back()->withErrors(['cif' => 'El CIF proporcionado no es válido.']);
-        }*/
+        }
         $empresa->cif = $cif;
         $empresa->iban = $request->iban;
         $empresa->save();
