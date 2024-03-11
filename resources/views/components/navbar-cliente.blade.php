@@ -3,14 +3,15 @@
     <ul class="nav-links">
         @if (Cookie::get('cliente_nombre'))
             <li><a href="{{ route('mostrar_perfil') }}">Dashboard</a></li>
+            <li><a href="{{ route('desconectar') }}">Desconectar</a></li>
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
 
 
-            <li><a href="{{ route('registroForm') }}">Register</a></li>
+            <li><a href="{{ route('registro.usuario') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
-        <form action="}}">
+        <form action="{{ route('registro.empresa') }}">
             <button>¿TIENES UNA EMPRESA?</button>
         </form>
     </ul>
@@ -22,13 +23,14 @@
     <ul class="drop-down">
         @if (Cookie::get('cliente_nombre'))
             <li><a href="{{ route('mostrar_perfil') }}">Dashboard</a></li>
+            <li><a href="{{ route('desconectar') }}">Desconectar</a></li>
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
 
-            <li><a href="{{ route('registroForm') }}">Register</a></li>
+            <li><a href="{{ route('registro.usuario') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
-        <li><a href="/">¿Tienes una empresa?</a></li>
+        <li><a href=" {{ route('registro.empresa')}}">¿Tienes una empresa?</a></li>
     </ul>
 </nav>
 <script defer>

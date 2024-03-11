@@ -3,8 +3,75 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Empresa;
+use Illuminate\Support\Facades\Cookie;
 
 class EmpresaController extends Controller
 {
     //
+    private function verificarCIF($cif) {
+        $cif = strtoupper($cif);
+        if (!preg_match('/^[ABCDEFGHJKLMNPQRSUVW][0-9]{7}[0-9A-J]$/', $cif)) {
+            return false;
+        }
+
+        $numero = substr($cif, 1, 7);
+        $numero = str_split($numero);
+        $control = $cif[8];
+
+        $suma = $numero[1] + $numero[3] + $numero[5];
+
+        for ($i = 0; $i < 7; $i += 2) {
+            $temp = (2 * $numero[$i]);
+            $temp = floor($temp / 10) + ($temp % 10);
+            $suma += $temp;
+        }
+
+        $n = 10 - ($suma % 10);
+
+        if ($cif[0] == 'K' || $cif[0] == 'P' || $cif[0] == 'Q' || $cif[0] == 'S') {
+            return ($control == chr(64 + $n));
+        } else if ($cif[0] == 'A' || $cif[0] == 'B' || $cif[0] == 'E' || $cif[0] == 'H') {
+            return ($control == $n);
+        } else {
+            return ($control == $n || $control == chr(64 + $n));
+        }
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'cif' => 'required|max:255',
+            'iban' => 'required|max:255',
+        ]);
+
+        $empresa = new Empresa();
+        $empresa->nombre_empresa = $request->name;
+        $empresa->usuario_id = Cookie::get('usuario_id');
+        $cif = $request->cif;
+        if (!$this->verificarCIF($cif)) {
+            return redirect()->back()->withErrors(['cif' => 'El CIF proporcionado no es válido.']);
+        }
+        $empresa->cif = $cif;
+        $empresa->iban = $request->iban;
+        $empresa->save();
+        echo "Empresa registrado correctamente";
+        Cookie::queue((Cookie::forget('registro_empresa')));
+        Cookie::queue((Cookie::forget('usuario_creado')));
+        return redirect()->route('welcome');
+    }
+
+    public function create(){
+        Cookie::queue('registro_empresa', 'true', 5);
+        if (Cookie::get('cliente_nombre')){ // Si existe la cookie 'cliente_nombre'
+
+        }else if (Cookie::get('usuario_creado')){ // Si existe la cookie 'usuario_creado'
+
+            return view('registrar-empresa');   // Redirige a la vista 'registrar-empresa'
+        } else{
+            return redirect()->route('login'); // Redirige a la ruta 'login'
+        }
+        
+    }
 }

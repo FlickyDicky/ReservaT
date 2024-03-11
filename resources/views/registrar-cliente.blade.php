@@ -1,5 +1,5 @@
 <!-- formulario de registro con nombre apellido email telefono contraseña verificar contraseña-->
-<form method="POST" action="{{ route('registro') }}">
+<form method="POST" action="{{ route('registrar_usuario') }}">
     @csrf
     <div class="form-group">
         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
@@ -34,6 +34,16 @@
                 </span>
             @enderror
         </div>
+        <div class="form-group">
+            <label for="municipio" class="col-md-4 col-form-label text-md-right">{{ __('Municipio') }}</label>
+            <div class="col-md-6">
+                <input id="municipio" type="text" class="form-control @error('municipio') is-invalid @enderror" name="municipio" value="{{ old('municipio') }}" required autocomplete="municipio" autofocus>
+                @error('municipio')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
     <div class="form-group">
         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo Electrónico') }}</label>
         <div class="col-md-6">
@@ -73,6 +83,13 @@
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
         </div>
     </div>
+    <!--
+    <div class="form-group">
+        <div class="col-md-6">
+            <input id="tipo" type="tipo" class="form-control" name="tipo" value="C">
+        </div>
+    </div>-->
+
     <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
             <button type="submit" class="btn btn-primary">
