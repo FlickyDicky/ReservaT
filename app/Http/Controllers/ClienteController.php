@@ -30,24 +30,21 @@ class ClienteController extends Controller
         $cliente->password = Hash::make($request->password);
 
         if (Cookie::get('registro_empresa')){
+            //cambiar el $cliente->tipo a E
             $cliente->tipo = 'E';
+
             $cliente->save();
             Cookie::queue('usuario_creado', 'true',5);
-            Cookie::queue('usuario_id', $this->buscarId($request->email),5);
+            $usuario = new Usuario;
+            Cookie::queue('usuario_id', $usuario->buscarId($request->email),5);
+            $cliente->save();
             return redirect()->route('registro.empresa'); // Redirige a la ruta 'registro.empresa'
         } else {
             $cliente->tipo = 'C';
             $cliente->save();
             return redirect()->route('welcome');
         }
-    
-    }
 
-    public function buscarId($email)
-    {
-        
-        $usuario = Usuario::where('email', $email)->first();
-        return $usuario->id;
     }
 
     public function create(){

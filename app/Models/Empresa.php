@@ -14,6 +14,6 @@ class Empresa extends Model
         'iban'
     ];
 
-
+    
 
 }

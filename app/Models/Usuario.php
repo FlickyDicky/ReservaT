@@ -19,4 +19,11 @@ class Usuario extends Model
         'tipo'
     ];
 
+    public function buscarId($email)
+    {
+
+        $usuario = Usuario::where('email', $email)->first();
+        echo $usuario->id;
+        return $usuario->id;
+    }
 }

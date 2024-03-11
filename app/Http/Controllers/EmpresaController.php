@@ -59,19 +59,23 @@ class EmpresaController extends Controller
         echo "Empresa registrado correctamente";
         Cookie::queue((Cookie::forget('registro_empresa')));
         Cookie::queue((Cookie::forget('usuario_creado')));
-        return redirect()->route('welcome');
+        if (Cookie::get('cliente_nombre')){ // Si existe la cookie 'cliente_nombre'
+            return redirect()->route('mostrar_datos');   // Redirige a la vista 'mostrar_datos'
+        }else{
+            return redirect()->route('welcome');
+        }
     }
 
     public function create(){
         Cookie::queue('registro_empresa', 'true', 5);
         if (Cookie::get('cliente_nombre')){ // Si existe la cookie 'cliente_nombre'
-
+            return view('registrar-empresa');   // Redirige a la vista 'registrar-empresa'
         }else if (Cookie::get('usuario_creado')){ // Si existe la cookie 'usuario_creado'
 
             return view('registrar-empresa');   // Redirige a la vista 'registrar-empresa'
         } else{
             return redirect()->route('login'); // Redirige a la ruta 'login'
         }
-        
+
     }
 }

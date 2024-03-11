@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Cookie;
+//usar el modelo Usuario
+use App\Models\Usuario;
 
 
 class LoginController extends Controller
 {
-
 
     function login(Request $request)
     {
@@ -33,7 +34,15 @@ class LoginController extends Controller
                 Cookie::queue('cliente_municipio', $cliente->tipo, 5);
                 Cookie::queue('cliente_tipo', $cliente->tipo, 5);
 
-                return redirect()->route('mostrar_datos'); // Redirige a la ruta 'mostrar_datos'
+                if (Cookie::get('registro_empresa')){
+                    $cliente->tipo = 'E';
+                    $cliente->save();
+                    $usuario = new Usuario();
+                    Cookie::queue('usuario_id', $usuario->buscarId($cliente->email),5);
+                    return redirect()->route('registro.empresa');
+                }else{
+                    return redirect()->route('mostrar_datos');
+                }
             } else {
                 return redirect()->route('welcome');
             }
@@ -45,7 +54,6 @@ class LoginController extends Controller
 
     function mostrar_datos()
     {
-        //dd(Cookie::get('cliente_nombre'));
         $nombre = Cookie::get('cliente_nombre');
         $email = Cookie::get('cliente_email');
         return view('welcome',['nombre' => $nombre, 'email' => $email]);
