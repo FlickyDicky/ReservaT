@@ -22,7 +22,7 @@ Route::post('/logout', function (Request $request) {
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
