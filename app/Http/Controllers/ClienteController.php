@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth; // Import the Auth facade
+
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Cookie;
 
 
 class ClienteController extends Controller
@@ -15,12 +17,12 @@ class ClienteController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'apellido' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:usuarios',
+            'email' => 'required|email|max:255|unique:users',
             'telefono' => 'required|max:255',
             'password' => 'required|min:8|confirmed',
         ]);
 
-        $cliente = new Usuario();
+        $cliente = new User();
         $cliente->nombre = $request->name;
         $cliente->apellidos = $request->apellido;
         $cliente->email = $request->email;
@@ -28,29 +30,32 @@ class ClienteController extends Controller
         $cliente->municipio = $request->municipio;
         $cliente->telefono = $request->telefono;
         $cliente->password = Hash::make($request->password);
-
-        if (Cookie::get('registro_empresa')){
-            $cliente->tipo = 'E';
-            $cliente->save();
-            Cookie::queue('usuario_creado', 'true',5);
-            Cookie::queue('usuario_id', $this->buscarId($request->email),5);
-            return redirect()->route('registro.empresa'); // Redirige a la ruta 'registro.empresa'
-        } else {
-            $cliente->tipo = 'C';
-            $cliente->save();
-            return redirect()->route('welcome');
-        }
-    
+        $cliente->tipo = 'C';
+        $cliente->save();
+        return redirect()->route('login');
     }
 
-    public function buscarId($email)
+    public function create()
     {
-        
-        $usuario = Usuario::where('email', $email)->first();
-        return $usuario->id;
+        return view('registrar-cliente');
     }
 
-    public function create(){
-        return view('registrar-cliente');
+    public function uploadProfilePhoto(Request $request)
+    {
+        $request->validate([
+            'photo' => 'required|image|max:2048',
+        ]);
+
+        $user = Auth::user(); // Get the currently authenticated user
+
+        if ($user) {
+            if ($user instanceof User) {
+                $photoPath = $request->file('photo')->store('public/profile-photos');
+                $user->foto = Storage::url($photoPath);
+                $user->save();
+            }
+        } else {
+            // Handle the case where the user does not exist
+        }
     }
 }

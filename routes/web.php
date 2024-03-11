@@ -33,7 +33,7 @@ Route::get('/login', function () {
 
 Route::post('/registro', [ClienteController::class, 'store'])->name('registrar_usuario');
 
-Route::get('/regsitro', [ClienteController::class, 'create'])->name('registro.usuario');
+Route::get('/registro', [ClienteController::class, 'create'])->name('registro.usuario');
 
 Route::post('/registro-empresa', [EmpresaController::class, 'store'])->name('registrar_empresa');
 
@@ -53,8 +53,9 @@ Route::get('/desconectar', [LoginController::class, 'logout'])->name('desconecta
 
 Route::get('/mostrar_perfil', [LoginController::class, 'mostrar_perfil'])->name('mostrar_perfil');
 
+Route::get('/upload-profile-photo', function () {
+    return view('foto');
+})->name('upload.profile.photo');
 
-
-
-
+Route::post('/post-photo', [ClienteController::class, 'uploadProfilePhoto'])->name('upload.photo');
 
