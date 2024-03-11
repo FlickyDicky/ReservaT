@@ -26,6 +26,7 @@ class LoginController extends Controller
 
         if($cliente) {
             if(\Illuminate\Support\Facades\Hash::check($credentials['password'], $cliente->password)) {
+                Cookie::queue('cliente_id', $cliente->id, 5);
                 Cookie::queue('cliente_nombre', $cliente->nombre, 5);
                 Cookie::queue('cliente_email', $cliente->email, 5);
                 Cookie::queue('cliente_apellidos', $cliente->apellidos, 5);
@@ -52,22 +53,18 @@ class LoginController extends Controller
         }
     }
 
-
-    function mostrar_datos()
-    {
+    function mostrar_bienvenida(){
         $nombre = Cookie::get('cliente_nombre');
         $email = Cookie::get('cliente_email');
-        return view('welcome',['nombre' => $nombre, 'email' => $email]);
-    }
-
-    function mostrar_perfil(){
-        $nombre = Cookie::get('cliente_nombre');
         $apellidos = Cookie::get('cliente_apellidos');
-        $email = Cookie::get('cliente_email');
+        $telefono = Cookie::get('cliente_telefono');
         $direccion = Cookie::get('cliente_direccion');
+        $municipio = Cookie::get('cliente_municipio');
+        $tipo = Cookie::get('cliente_tipo');
 
-        return view('perfil',['nombre' => $nombre, 'email' => $email, 'apellidos' => $apellidos, 'direccion' => $direccion]);
+        return view('welcome', ['nombre' => $nombre, 'email' => $email, 'apellidos' => $apellidos, 'telefono' => $telefono, 'direccion' => $direccion, 'municipio' => $municipio, 'tipo' => $tipo]);
     }
+
 
     function logout()
     {

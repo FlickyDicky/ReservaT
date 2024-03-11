@@ -15,8 +15,8 @@
         <div class="line"></div>
     </div>
     <ul class="drop-down">
-        <li><a href="/about">Perfil</a></li>
-        <li><a href="/about">Servicios</a></li>
+        <li><a href="{{ route('mostrar_perfil') }}">Perfil</a></li>
+        <li><a href="{{ route('mostrar_perfil') }}">Servicios</a></li>
         <li><a href="{{ route('desconectar')}}">Log out</a></li>
     </ul>
 </nav>

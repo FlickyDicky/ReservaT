@@ -43,15 +43,20 @@ Route::get('/principal', function () {
     return view('principal');
 })->name('principal');
 
-
-
 Route::post('/conectar', [LoginController::class, 'login'])->name('conectar');
 
-Route::get('/mostrar_datos', [LoginController::class, 'mostrar_datos'])->name('mostrar_datos');
+Route::get('/mostrar_datos', [LoginController::class, 'mostrar_bienvenida'])->name('mostrar_datos');
 
 Route::get('/desconectar', [LoginController::class, 'logout'])->name('desconectar');
 
-Route::get('/mostrar_perfil', [LoginController::class, 'mostrar_perfil'])->name('mostrar_perfil');
+Route::get('/perfil', [ClienteController::class, 'mostrar_perfil'])->name('mostrar_perfil'); //muestra la vista
+
+Route::get('/editar_perfil', [ClienteController::class, 'editar_perfil'])->name('editar_perfil');
+
+Route::post('/update', [ClienteController::class, 'update'])->name('update');
+
+
+
 
 
 
