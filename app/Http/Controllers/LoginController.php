@@ -31,16 +31,17 @@ class LoginController extends Controller
                 Cookie::queue('cliente_apellidos', $cliente->apellidos, 5);
                 Cookie::queue('cliente_telefono', $cliente->telefono, 5);
                 Cookie::queue('cliente_direccion', $cliente->direccion, 5);
-                Cookie::queue('cliente_municipio', $cliente->tipo, 5);
-                Cookie::queue('cliente_tipo', $cliente->tipo, 5);
+                Cookie::queue('cliente_municipio', $cliente->municipio, 5);
 
                 if (Cookie::get('registro_empresa')){
                     $cliente->tipo = 'E';
+                    Cookie::queue('cliente_tipo', $cliente->tipo, 5);
                     $cliente->save();
                     $usuario = new Usuario();
                     Cookie::queue('usuario_id', $usuario->buscarId($cliente->email),5);
                     return redirect()->route('registro.empresa');
                 }else{
+                    Cookie::queue('cliente_tipo', $cliente->tipo, 5);
                     return redirect()->route('mostrar_datos');
                 }
             } else {
