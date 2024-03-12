@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\PerfilController;
 
 // ...
 
@@ -43,9 +44,7 @@ Route::get('/mostrar_datos', [LoginController::class, 'mostrar_datos'])->name('m
 
 Route::get('/desconectar', [LoginController::class, 'logout'])->name('desconectar');
 
-Route::get('/perfil', [LoginController::class, 'mostrar_perfil'])->name('mostrar_perfil'); //muestra la vista
 
-Route::get('/editar_perfil', [ClienteController::class, 'editar_perfil'])->name('editar_perfil');
 
 Route::post('/update', [ClienteController::class, 'update'])->name('update');
 
@@ -54,4 +53,13 @@ Route::get('/upload-profile-photo', function () {
 })->name('upload.profile.photo');
 
 Route::post('/post-photo', [ClienteController::class, 'uploadProfilePhoto'])->name('upload.photo');
+
+//Mostrar y editar el perfil
+Route::get('/perfil', [PerfilController::class, 'create'])->name('mostrar_perfil'); //muestra la vista del perfil
+
+Route::get('/editar_perfil', [PerfilController::class, 'show_update'])->name('edicion_perfil');
+
+Route::post('/editar_perfil', [PerfilController::class, 'update'])->name('editar_perfil');
+
+Route::post('/delete', [PerfilController::class, 'delete'])->name('eliminar_perfil');
 
