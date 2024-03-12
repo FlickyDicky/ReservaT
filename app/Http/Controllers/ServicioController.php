@@ -22,6 +22,30 @@ class ServicioController extends Controller
 
     public function new_servicio()
     {
+        return view('nuevo-servicio');
+    }
+
+    public function create_servicio(Request $request)
+    {
+        $servicio = new Servicio();
+        $servicio->nombre = $request->nombre;
+        $servicio->descripcion = $request->descripcion;
+        $servicio->precio = $request->precio;
+        $servicio->empresa_id = auth()->user()->empresa->id;
+        $servicio->horario_id = auth()->user()->empresa->horario->id;
+        $servicio->duracion = $request->duracion;
+        $servicio->save();
+
+        return redirect()->route('servicios');
+    }
+
+    public function update()
+    {
+
+    }
+
+    public function delete()
+    {
 
     }
 }

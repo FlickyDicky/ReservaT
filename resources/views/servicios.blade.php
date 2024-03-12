@@ -1,7 +1,7 @@
 <x-selector-nav></x-selector-nav>
 
 <!-- Crear una tabla con todos los servicios-->
-<form action="">
+<form action="{{ route ('new_servicio')}}">
     <button>Crear un nuevo servicio</button>
 </form>
 <table>
@@ -16,9 +16,9 @@
         <tr>
             <td>{{$servicio->nombre}}</td>
             <td>{{$servicio->descripcion}}</td>
-            <td>{{$servicio->precio}}</td>
+            <td>{{$servicio->precio}} €</td>
             <td>
-                <form action="">
+                <form action="{{route('update_servicio')}}">
                     {{-- <!--{{route('editar_servicio')}}--> --}}
                     <input type="hidden" name="id" value="{{$servicio->id}}">
                     <button>Editar</button>
@@ -26,7 +26,7 @@
             </td>
             <td>
                 {{-- <!-- {{route('eliminar_servicio')}}--> --}}
-                <form action="">
+                <form action="{{route('delete_servicio')}}">
                     <input type="hidden" name="id" value="{{$servicio->id}}">
                     <button>Eliminar</button>
                 </form>

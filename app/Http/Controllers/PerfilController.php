@@ -13,7 +13,6 @@ class PerfilController extends Controller
     public function create(){
 
         $user = Auth::user();
-
         return view('perfil', ['user', $user]);
 
     }
@@ -24,6 +23,7 @@ class PerfilController extends Controller
 
         return view('editar-perfil', ['user' => $user]);
     }
+    
     //update the perfil
     public function update(Request $request)
     {
