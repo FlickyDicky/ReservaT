@@ -15,13 +15,5 @@
     <input type='text' name='direccion' id='direccion' value='{{$direccion}}' placeholder='{{$direccion}}'>
     <label for='municipio'>Municipio:</label>
     <input type='text' name='municipio' id='municipio' value='{{$municipio}}' placeholder='{{$municipio}}'>
-    {{-- @if(Cookie::get('cliente_tipo') == 'E')
-        <label for='nombre_empresa'>Nombre de empresa:</label>
-        <input type='text' name='nombre_empresa' id='nombre_empresa' value='{{$nombre_empresa}}' placeholder='{{$nombre_empresa}}'>
-        <label for='cif'>CIF:</label>
-        <input type='text' name='cif' id='cif' value='{{$cif}}' placeholder='{{$cif}}'>
-
-
-    @endif --}}
     <button type='submit'>Editar</button>
 </form>

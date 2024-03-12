@@ -58,4 +58,6 @@ class ClienteController extends Controller
             // Handle the case where the user does not exist
         }
     }
+
+    
 }

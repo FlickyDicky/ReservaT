@@ -14,6 +14,9 @@ class Empresa extends Model
         'iban'
     ];
 
-    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

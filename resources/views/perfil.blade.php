@@ -5,10 +5,11 @@
 <p> Email: {{$email}}</p>
 <p> Telefono: {{$telefono}}</p>
 <p> Direccion: {{$direccion}}</p>
-{{-- @if (Cookie::get('cliente_tipo') == 'E')
-    <p> Nombre de empresa: {{$nombre_empresa}}</p>
+
+@if (Auth::user()->tipo == 'E')
+    <p> Nombre de empresa: {{$nombre_empresa }}</p>
     <p> CIF: {{$cif}}</p>
-@endif --}}
+@endif
 
 <form action="{{route('editar_perfil')}}">
     <button>

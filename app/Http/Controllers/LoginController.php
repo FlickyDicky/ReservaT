@@ -43,12 +43,29 @@ class LoginController extends Controller
     {
         $user = Auth::user();
 
-        return view('perfil', [
-            'nombre' => $user->nombre,
-            'apellidos' => $user->apellidos,
-            'email' => $user->email,
-            'direccion' => $user->direccion,
-        ]);
+        if ($user->tipo == 'C') {
+            return view('perfil', [
+                'nombre' => $user->nombre,
+                'apellidos' => $user->apellidos,
+                'email' => $user->email,
+                'direccion' => $user->direccion,
+                'telefono' => $user->telefono,
+                'foto_perfil' => $user->foto,
+            ]);
+        } else {
+            $empresa = $user->empresa;
+            return view('perfil', [
+                'nombre' => $user->nombre,
+                'apellidos' => $user->apellidos,
+                'email' => $user->email,
+                'direccion' => $user->direccion,
+                'telefono' => $user->telefono,
+                'foto_perfil' => $user->foto,
+                'nombre_empresa' => $empresa->nombre_empresa,
+                'cif' => $empresa->cif,
+                'iban' => $empresa->iban,
+            ]);
+        }
     }
 
     public function logout()
