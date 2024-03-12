@@ -14,9 +14,10 @@
     <!-- si existe una cookie con el nombre cliente_tipo y su valor es C mostrar x-navbar-cliente -->
     <x-selector-nav />
     <!-- si hay una cookie, mostrar el saludo -->
-    @if (isset($nombre))
-        <h1>¡Hola, {{ $nombre }}! ¿Qué quieres hacer hoy?</h1>
-        <p> Tu email es {{ $email }}</p>
+    @if (Auth::check())
+        <h1>¡Hola, {{ Auth::user()->nombre }}! ¿Qué quieres hacer hoy?</h1>
+        <p> Tu email es {{ Auth::user()->email }}</p>
+        <img src="{{ Auth::user()->foto }}" alt="Profile Picture">
     @else
         <h1>¡Bienvenido a reserva·T!</h1>
     @endif

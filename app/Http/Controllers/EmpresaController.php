@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Empresa;
-use Illuminate\Support\Facades\Cookie;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class EmpresaController extends Controller
 {
@@ -48,32 +50,27 @@ class EmpresaController extends Controller
 
         $empresa = new Empresa();
         $empresa->nombre_empresa = $request->name;
-        $empresa->usuario_id = Cookie::get('usuario_id');
+        $empresa->usuario_id = Auth::id();
         $cif = $request->cif;
         if (!$this->verificarCIF($cif)) {
             return redirect()->back()->withErrors(['cif' => 'El CIF proporcionado no es válido.']);
         }
         $empresa->cif = $cif;
         $empresa->iban = $request->iban;
-        $empresa->save();
-        echo "Empresa registrado correctamente";
-        Cookie::queue((Cookie::forget('registro_empresa')));
-        Cookie::queue((Cookie::forget('usuario_creado')));
-        if (Cookie::get('cliente_nombre')){ // Si existe la cookie 'cliente_nombre'
-            return redirect()->route('mostrar_datos');   // Redirige a la vista 'mostrar_datos'
-        }else{
-            return redirect()->route('welcome');
+        $user = Auth::user();
+        if ($user instanceof User) {
+            // If the authenticated user is an instance of the User model
+            $user->tipo = 'E';
+            $user->save();
         }
+        $empresa->save();
+        return redirect()->route('welcome')->with('user', Auth::user());
     }
 
     public function create(){
-        Cookie::queue('registro_empresa', 'true', 5);
-        if (Cookie::get('cliente_nombre')){ // Si existe la cookie 'cliente_nombre'
-            return view('registrar-empresa');   // Redirige a la vista 'registrar-empresa'
-        }else if (Cookie::get('usuario_creado')){ // Si existe la cookie 'usuario_creado'
-
-            return view('registrar-empresa');   // Redirige a la vista 'registrar-empresa'
-        } else{
+        if (Auth::check()){ // Si existe la cookie 'cliente_nombre'
+            return view('registrar-empresa'); // Devuelve la vista 'registrar-empresa'
+        }else { // Si existe la cookie 'usuario_creado'
             return redirect()->route('login'); // Redirige a la ruta 'login'
         }
 

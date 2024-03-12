@@ -27,3 +27,4 @@ class Usuario extends Model
         return $usuario->id;
     }
 }
+
