@@ -44,8 +44,11 @@ class ServicioController extends Controller
 
     }
 
-    public function delete()
-    {
-
+    public function delete(Request $request){
+        $servicio = Servicio::find($request->id);
+        if ($servicio) {
+            $servicio->delete();
+        }
+        return redirect()->route('servicios');
     }
 }
