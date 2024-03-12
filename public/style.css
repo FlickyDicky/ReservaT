@@ -7,6 +7,8 @@
 :root {
     font-family: "Instrument Sans", sans-serif;
     --primary-color: #007f5f;
+    --primary-color-hover: #199173;
+
     --primary-color-dark: #123524;
     --complementary-color: #5f007f;
     --complementary-color-dark: #2d013b;
@@ -155,7 +157,58 @@ nav button:hover {
     display: flex !important;
 }
 
-@media screen and (max-width: 600px) {
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-img {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login-form form {
+    width: 50%;
+}
+
+.flex-item {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.login-form {
+    display: flex;
+    
+    width: 100%;
+    padding: 1em;
+    margin-top: 5em;
+    border-radius: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.login-form img {
+    transition: transform 200ms;
+}
+
+.login-form img:hover {
+    transform: scale(1.05);
+}
+
+.primary-btn {
+    background: var(--primary-color); 
+    color: var(--light-text);
+}
+
+.primary-btn:hover {
+    background: var(--primary-color-hover) !important;
+    color: var(--light-text) !important;
+}
+
+@media screen and (max-width: 768px) {
     :root {
         font-size: 0.8em;
     }
@@ -183,4 +236,12 @@ nav button:hover {
         justify-content: center;
         margin-left: auto;
     }
+    .login-form .form-img {
+        display: none;
+    }
+
+    .login-form {
+        width: max-content;
+    }
+
 }

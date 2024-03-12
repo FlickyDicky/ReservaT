@@ -50,7 +50,7 @@ class EmpresaController extends Controller
 
         $empresa = new Empresa();
         $empresa->nombre_empresa = $request->name;
-        $empresa->usuario_id = Auth::id();
+        $empresa->user_id = Auth::id();
         $cif = $request->cif;
         if (!$this->verificarCIF($cif)) {
             return redirect()->back()->withErrors(['cif' => 'El CIF proporcionado no es válido.']);
@@ -68,11 +68,11 @@ class EmpresaController extends Controller
     }
 
     public function create(){
-        if (Auth::check()){ // Si existe la cookie 'cliente_nombre'
-            return view('registrar-empresa'); // Devuelve la vista 'registrar-empresa'
-        }else { // Si existe la cookie 'usuario_creado'
-            return redirect()->route('login'); // Redirige a la ruta 'login'
+        if (Auth::check()){
+            return view('registrar-empresa');
+        }else {
+            return redirect()->route('login'); // Redirect to the login page
         }
-        
+
     }
 }

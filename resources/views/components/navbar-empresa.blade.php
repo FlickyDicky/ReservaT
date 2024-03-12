@@ -2,7 +2,7 @@
     <li><a href=""><img src="{{ asset('img/logo-negativo.svg') }}" class="nav-logo" alt=""></a></li>
     <ul class="nav-links">
         <li><a href="{{ route('mostrar_perfil') }}">Perfil</a></li>
-        <li><a href="{{ route('mostrar_perfil') }}">Servicios</a></li>
+        <li><a href="{{ route('servicios') }}">Servicios</a></li>
         <form action=" {{ route('desconectar')}}">
             <button>
                 LOG OUT
@@ -15,8 +15,8 @@
         <div class="line"></div>
     </div>
     <ul class="drop-down">
-        <li><a href="/about">Perfil</a></li>
-        <li><a href="/about">Servicios</a></li>
+        <li><a href="{{ route('mostrar_perfil') }}">Perfil</a></li>
+        <li><a href="{{ route('servicios') }}">Servicios</a></li>
         <li><a href="{{ route('desconectar')}}">Log out</a></li>
     </ul>
 </nav>

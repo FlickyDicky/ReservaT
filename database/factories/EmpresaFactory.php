@@ -23,7 +23,7 @@ class EmpresaFactory extends Factory
             'nombre_empresa' => $this->faker->name,
             'cif' => $this->faker->text(10),
             'iban' => $this->faker->text(24),
-            'usuario_id' => $user->id ?? User::factory()->create()->id, // Generate a random user ID if no user with type 'E' is found
+            'user_id' => $user->id ?? User::factory()->create()->id, // Generate a random user ID if no user with type 'E' is found
         ];
     }
 }

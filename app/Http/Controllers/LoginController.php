@@ -39,16 +39,8 @@ class LoginController extends Controller
         ]);
     }
 
-    public function mostrar_perfil()
-    {
-        $user = Auth::user();
+    public function mostrar_perfil(){
 
-        return view('perfil', [
-            'nombre' => $user->nombre,
-            'apellidos' => $user->apellidos,
-            'email' => $user->email,
-            'direccion' => $user->direccion,
-        ]);
     }
 
     public function logout()

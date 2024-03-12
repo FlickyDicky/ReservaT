@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Horario::factory(10)->create();
 
         /*aquí tenemos un seed concreto para un insert de prueba hehe*/
-        DB::table('usuarios')->insert([
+        DB::table('users')->insert([
             'nombre' => 'ryan',
             'apellidos' => 'admin',
             'email' => 'ryan@admin.com',
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        DB::table('usuarios')->insert([
+        DB::table('users')->insert([
             'nombre' => 'admin',
             'apellidos' => 'admin',
             'email' => 'admin@admin.com',
