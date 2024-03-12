@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -49,13 +50,25 @@ class ClienteController extends Controller
         $user = Auth::user(); // Get the currently authenticated user
 
         if ($user) {
+            // Check if the user already has a photo or the default value
+            if ($user->foto !== '0') {
+                // Remove the '/storage/' prefix before deleting the file
+                Storage::delete($user->foto);
+            }
+
+
+            // Store the newly uploaded photo
+            $photoPath = $request->file('photo')->store('public/profile-photos');
+            $user->foto = Storage::url($photoPath);
             if ($user instanceof User) {
-                $photoPath = $request->file('photo')->store('public/profile-photos');
-                $user->foto = Storage::url($photoPath);
                 $user->save();
             }
+
+            // Optionally, you can return a success message or redirect the user
+            return redirect()->route('welcome')->with('success', 'Profile photo uploaded successfully.');
         } else {
             // Handle the case where the user does not exist
+            return redirect()->back()->with('error', 'User not found.');
         }
     }
 }

@@ -55,7 +55,7 @@ Route::get('/mostrar_perfil', [LoginController::class, 'mostrar_perfil'])->name(
 
 Route::get('/upload-profile-photo', function () {
     return view('foto');
-})->name('upload.profile.photo');
+})->name('photo.form');
 
 Route::post('/post-photo', [ClienteController::class, 'uploadProfilePhoto'])->name('upload.photo');
 
