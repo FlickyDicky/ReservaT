@@ -71,7 +71,9 @@ Route::get('/new_servicio', [ServicioController::class, 'new_servicio'])->name('
 
 Route::post('/create_servicio', [ServicioController::class, 'create_servicio'])->name('create_servicio');
 
-Route::post('/update_servicio', [ServicioController::class, 'update'])->name('update_servicio');
+Route::get('/update_servicio', [ServicioController::class, 'update'])->name('update_servicio');
+
+Route::post('/update_servicio', [ServicioController::class, 'update_servicio'])->name('editar_servicio');
 
 Route::post('/delete_servicio', [ServicioController::class, 'delete'])->name('delete_servicio');
 

@@ -1,4 +1,3 @@
-<x-selector-nav></x-selector-nav>
 
 <form action="{{ route ('create_servicio')}}" method='POST'>
     @csrf
