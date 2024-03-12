@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ServicioController;
 
 // ...
 
@@ -62,4 +63,7 @@ Route::get('/editar_perfil', [PerfilController::class, 'show_update'])->name('ed
 Route::post('/editar_perfil', [PerfilController::class, 'update'])->name('editar_perfil');
 
 Route::post('/delete', [PerfilController::class, 'delete'])->name('eliminar_perfil');
+
+//Gestión de servicios
+Route::get('/servicios', [ServicioController::class, 'create'])->name('servicios');
 

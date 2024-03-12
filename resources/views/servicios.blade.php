@@ -19,13 +19,13 @@
             <td>{{$servicio->precio}}</td>
             <td>
                 <form action="">
-                    <!--{{route('editar_servicio')}}-->
+                    {{-- <!--{{route('editar_servicio')}}--> --}}
                     <input type="hidden" name="id" value="{{$servicio->id}}">
                     <button>Editar</button>
                 </form>
             </td>
             <td>
-                <!-- {{route('eliminar_servicio')}}-->
+                {{-- <!-- {{route('eliminar_servicio')}}--> --}}
                 <form action="">
                     <input type="hidden" name="id" value="{{$servicio->id}}">
                     <button>Eliminar</button>
@@ -33,6 +33,7 @@
             </td>
         </tr>
     @endforeach
+
 
 
 

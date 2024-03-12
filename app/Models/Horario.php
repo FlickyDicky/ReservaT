@@ -13,4 +13,14 @@ class Horario extends Model
         'apertura',
         'cierre',
     ];
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
+    }
+
+    public function servicios()
+    {
+        return $this->hasMany(Servicio::class);
+    }
 }
