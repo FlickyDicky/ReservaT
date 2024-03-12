@@ -1,5 +1,3 @@
-<x-selector-nav/>
-
 <p> Nombre: {{auth()->user()->nombre}}</p>
 <p> Apellido: {{auth()->user()->apellidos}}</p>
 <p> Email: {{auth()->user()->email}}</p>
