@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Editar Perfil')
+@section('title', '¡Bienvenido a reserva·T')
 
 @section('content')
     @if ($errors->any())
