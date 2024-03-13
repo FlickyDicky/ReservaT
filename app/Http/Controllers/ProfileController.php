@@ -49,7 +49,7 @@ class ProfileController extends Controller
             $user->save();
         }
 
-        return redirect()->route('perfil');
+        return redirect()->route('perfil', auth()->user());
     }
 
     public function destroy()
