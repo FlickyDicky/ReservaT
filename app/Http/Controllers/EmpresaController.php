@@ -44,13 +44,13 @@ class EmpresaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:255',
+            'nombre' => 'required|max:255',
             'cif' => 'required|max:255',
             'iban' => 'required|max:255',
         ]);
 
         $empresa = new Empresa();
-        $empresa->nombre_empresa = $request->name;
+        $empresa->nombre_empresa = $request->nombre;
         $empresa->user_id = Auth::id();
         $cif = $request->cif;
         if (!$this->verificarCIF($cif)) {
@@ -65,15 +65,14 @@ class EmpresaController extends Controller
             $user->save();
         }
         $empresa->save();
-        EmpresaController::crear_horario(); // Crear un horario por defecto para la empresa
+        EmpresaController::crearHorario($empresa->id); // Crear un horario por defecto para la empresa
         return redirect()->route('welcome')->with('user', Auth::user());
     }
 
-    public function crear_horario()
+    public function crearHorario($id)
     {
-        $empresa_id = Auth::user()->empresa->id;
         $horario = new Horario();
-        $horario->empresa_id = $empresa_id;
+        $horario->empresa_id = $id;
         $horario->apertura = '00:00';
         $horario->cierre = '00:00';
         $horario->save();
@@ -82,8 +81,8 @@ class EmpresaController extends Controller
 
     public function create(){
         if (Auth::check()){
-            return view('registrar-empresa');
-        }else {
+            return view('register-company');
+        } else {
             return redirect()->route('login'); // Redirect to the login page
         }
 

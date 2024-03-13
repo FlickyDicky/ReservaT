@@ -1,4 +1,8 @@
-<x-selector-nav/>
+@extends('layout')
+
+@section('title', 'Próximas citas')
+
+@section('content')
 <h1>Próximas citas</h1>
 
 <input type='date' id='fecha' name='fecha'>
@@ -22,3 +26,4 @@
         </tr>
     @endforeach
 </table>
+@endsection

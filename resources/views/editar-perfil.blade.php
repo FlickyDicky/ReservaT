@@ -1,4 +1,8 @@
+@extends('layout')
 
+@section('title', 'Editar Perfil')
+
+@section('content')
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -32,3 +36,9 @@
 
     <button type='submit'>Editar</button>
 </form>
+<form action="{{ route('upload.photo') }}" method="post" enctype="multipart/form-data">
+    @csrf
+    <input type="file" name="photo" accept="image/*">
+    <button type="submit">Upload Photo</button>
+</form>
+endsection

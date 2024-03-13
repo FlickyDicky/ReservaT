@@ -1,11 +1,17 @@
+@extends('layout')
+
+@section('title', 'Registra tu empresa')
+
+@section('content')
+
 <!-- formulario de registro con nombre apellido email telefono contraseña verificar contraseña-->
 <form method="POST" action="{{ route('registrar_empresa') }}">
     @csrf
     <div class="form-group">
-        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Empresa') }}</label>
+        <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Empresa') }}</label>
         <div class="col-md-6">
-            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-            @error('name')
+            <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
+            @error('nombre')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -45,3 +51,5 @@
                 {{ __('Registrarse') }} 
             </button>
         </div>
+
+@endsection
