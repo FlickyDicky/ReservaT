@@ -1,38 +1,46 @@
-<x-selector-nav></x-selector-nav>
-
 <!-- Crear una tabla con todos los servicios-->
-<form action="">
+<form action="{{ route ('new_servicio')}}">
     <button>Crear un nuevo servicio</button>
 </form>
 <table>
+    @if ($servicios->count() > 0)
     <tr>
         <th>Nombre</th>
         <th>Descripcion</th>
         <th>Precio</th>
+        <th>Duración</th>
         <th>Editar</th>
         <th>Eliminar</th>
     </tr>
-    @foreach ($servicios as $servicio)
+
+        @foreach ($servicios as $servicio)
+            <tr>
+                <td>{{$servicio->nombre}}</td>
+                <td>{{$servicio->descripcion}}</td>
+                <td>{{$servicio->precio}} €</td>
+                <td>{{$servicio->duracion}} min</td>
+                <td>
+                    <form action="{{route('update_servicio')}}">
+                        {{-- <!--{{route('editar_servicio')}}--> --}}
+                        <input type="hidden" name="id" value="{{$servicio->id}}">
+                        <button>Editar</button>
+                    </form>
+                </td>
+                <td>
+                    {{-- <!-- {{route('eliminar_servicio')}}--> --}}
+                    <form action="{{route('delete_servicio')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$servicio->id}}">
+                        <button>Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    @else
         <tr>
-            <td>{{$servicio->nombre}}</td>
-            <td>{{$servicio->descripcion}}</td>
-            <td>{{$servicio->precio}}</td>
-            <td>
-                <form action="">
-                    {{-- <!--{{route('editar_servicio')}}--> --}}
-                    <input type="hidden" name="id" value="{{$servicio->id}}">
-                    <button>Editar</button>
-                </form>
-            </td>
-            <td>
-                {{-- <!-- {{route('eliminar_servicio')}}--> --}}
-                <form action="">
-                    <input type="hidden" name="id" value="{{$servicio->id}}">
-                    <button>Eliminar</button>
-                </form>
-            </td>
+            <td colspan="6">No hay ningún servicio... ¡Todavía!</td>
         </tr>
-    @endforeach
+    @endif
 
 
 

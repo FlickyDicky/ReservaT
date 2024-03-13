@@ -22,6 +22,64 @@ class ServicioController extends Controller
 
     public function new_servicio()
     {
+        return view('nuevo-servicio');
+    }
 
+    public function create_servicio(Request $request)
+{
+    $servicio = new Servicio();
+    $servicio->nombre = $request->nombre;
+    $servicio->descripcion = $request->descripcion;
+    $servicio->precio = $request->precio;
+    $servicio->empresa_id = auth()->user()->empresa->id; //coge el id de la empresa
+
+
+    if (auth()->user()->empresa->horario) {
+        $servicio->horario_id = auth()->user()->empresa->horario->id; //coge el horario asociado a la empresa
+    } else {
+        // Handle the case where the empresa does not have a horario
+        // You might want to redirect back with an error message
+        return redirect()->back()->withErrors(['horario' => 'La empresa no tiene un horario asociado.']);
+    }
+
+    $servicio->duracion = $request->duracion;
+    $servicio->save();
+
+    return redirect()->route('servicios');
+}
+
+    public function update(Request $request)
+    {
+        $servicio = Servicio::find($request->id);
+        return view('editar-servicio', ['servicio' => $servicio]);
+    }
+
+    public function update_servicio(Request $request)
+    {
+        $servicio = Servicio::find($request->id);
+
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'descripcion' => 'required|max:255',
+            'precio' => 'required|numeric',
+            'duracion' => 'required|numeric',
+        ]);
+
+        if ($servicio) {
+            $servicio->nombre = $request->nombre;
+            $servicio->descripcion = $request->descripcion;
+            $servicio->precio = $request->precio;
+            $servicio->duracion = $request->duracion;
+            $servicio->save();
+        }
+        return redirect()->route('servicios');
+    }
+
+    public function delete(Request $request){
+        $servicio = Servicio::find($request->id);
+        if ($servicio) {
+            $servicio->delete();
+        }
+        return redirect()->route('servicios');
     }
 }

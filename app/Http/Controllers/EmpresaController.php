@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Empresa;
 use App\Models\User;
+use App\Models\Horario;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -64,7 +65,19 @@ class EmpresaController extends Controller
             $user->save();
         }
         $empresa->save();
+        EmpresaController::crear_horario(); // Crear un horario por defecto para la empresa
         return redirect()->route('welcome')->with('user', Auth::user());
+    }
+
+    public function crear_horario()
+    {
+        $empresa_id = Auth::user()->empresa->id;
+        $horario = new Horario();
+        $horario->empresa_id = $empresa_id;
+        $horario->apertura = '00:00';
+        $horario->cierre = '00:00';
+        $horario->save();
+        
     }
 
     public function create(){

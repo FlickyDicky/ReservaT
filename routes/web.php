@@ -67,3 +67,13 @@ Route::post('/delete', [PerfilController::class, 'delete'])->name('eliminar_perf
 //Gestión de servicios
 Route::get('/servicios', [ServicioController::class, 'create'])->name('servicios');
 
+Route::get('/new_servicio', [ServicioController::class, 'new_servicio'])->name('new_servicio');
+
+Route::post('/create_servicio', [ServicioController::class, 'create_servicio'])->name('create_servicio');
+
+Route::get('/update_servicio', [ServicioController::class, 'update'])->name('update_servicio');
+
+Route::post('/update_servicio', [ServicioController::class, 'update_servicio'])->name('editar_servicio');
+
+Route::post('/delete_servicio', [ServicioController::class, 'delete'])->name('delete_servicio');
+

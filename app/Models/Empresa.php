@@ -19,4 +19,9 @@ class Empresa extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function horario()
+    {
+        return $this->hasOne(Horario::class);
+    }
+
 }
