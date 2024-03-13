@@ -85,6 +85,7 @@ nav .nav-logo {
 }
 
 nav .drop-down {
+    z-index: 1000;
     display: none;
     align-items: flex-start; /* Add this line */
     flex-direction: column;
@@ -243,7 +244,7 @@ nav button:hover {
     }
 
     .form {
-        width: max-content;
+        width: 80%;
     }
 
 }
