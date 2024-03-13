@@ -56,9 +56,9 @@ Route::get('/upload-profile-photo', function () {
 Route::post('/post-photo', [ClienteController::class, 'uploadProfilePhoto'])->name('upload.photo');
 
 //Mostrar y editar el perfil
-Route::get('/perfil', [PerfilController::class, 'create'])->name('mostrar_perfil'); //muestra la vista del perfil
-
-Route::get('/editar_perfil', [PerfilController::class, 'show_update'])->name('edicion_perfil');
+Route::get('/perfil/{user}', function($user){
+    return view('editar-perfil', ['user' => $user]);
+})->name('mostrar_perfil'); //muestra la vista del perfil
 
 Route::post('/editar_perfil', [PerfilController::class, 'update'])->name('editar_perfil');
 
@@ -73,7 +73,7 @@ Route::post('/create_servicio', [ServicioController::class, 'create_servicio'])-
 
 Route::get('/update_servicio', [ServicioController::class, 'update'])->name('update_servicio');
 
-Route::post('/update_servicio', [ServicioController::class, 'update_servicio'])->name('editar_servicio');
+Route::post('/update_servicio/{id}', [ServicioController::class, 'update_servicio'])->name('editar_servicio');
 
-Route::post('/delete_servicio', [ServicioController::class, 'delete'])->name('delete_servicio');
+Route::post('/delete_servicio/{id}', [ServicioController::class, 'delete'])->name('delete_servicio');
 

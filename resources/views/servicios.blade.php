@@ -20,17 +20,17 @@
                 <td>{{$servicio->precio}} €</td>
                 <td>{{$servicio->duracion}} min</td>
                 <td>
-                    <form action="{{route('update_servicio')}}">
+                    <form action="{{route('update_servicio', $servicio->id)}}">
                         {{-- <!--{{route('editar_servicio')}}--> --}}
-                        <input type="hidden" name="id" value="{{$servicio->id}}">
+                        {{-- <input type="hidden" name="id" value="{{$servicio->id}}"> --}}
                         <button>Editar</button>
                     </form>
                 </td>
                 <td>
                     {{-- <!-- {{route('eliminar_servicio')}}--> --}}
-                    <form action="{{route('delete_servicio')}}" method="POST">
+                    <form action="{{route('delete_servicio', $servicio->id)}}" method="POST">
                         @csrf
-                        <input type="hidden" name="id" value="{{$servicio->id}}">
+                        {{-- <input type="hidden" name="id" value="{{$servicio->id}}"> --}}
                         <button>Eliminar</button>
                     </form>
                 </td>
