@@ -52,9 +52,9 @@ Route::post('/post-photo', [UserController::class, 'uploadProfilePhoto'])->name(
 Route::get('/profile/{user}', function($user){
     $user = Auth::user();
     return view('editar-perfil', ['user' => $user]);
-})->name('profile.form.create')->middleware('auth'); //muestra la vista del perfil
+})->name('profile.create'); //muestra la vista del perfil
 
-Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth'); //actualiza el perfil
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update'); //actualiza el perfil
 
 Route::post('/delete', [ProfileController::class, 'destroy'])->name('eliminar_perfil');
 
