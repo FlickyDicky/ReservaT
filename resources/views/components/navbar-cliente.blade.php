@@ -2,7 +2,7 @@
     <li><a href=""><img src="{{ asset('img/logo-negativo.svg') }}" class="nav-logo" alt=""></a></li>
     <ul class="nav-links">
         @if (Auth::check())
-            <li><a href="{{ route('profile.form.create', ['user' => auth()->user()->id]) }}">Dashboard</a></li>
+            <li><a href="{{ route('profile.create', ['user' => auth()->user()->id]) }}">Dashboard</a></li>
             <li><a href="{{ route('logout') }}">Desconectar</a></li>
         @else
             <li><a href="{{ route('login.create') }}">Login</a></li>
@@ -22,7 +22,7 @@
     </div>
     <ul class="drop-down">
         @if (Auth::check())
-            <li><a href="{{ route('profile.form.create', ['user' => auth()->user()->id]) }}">Dashboard</a></li>
+            <li><a href="{{ route('profile.create', ['user' => auth()->user()->id]) }}">Dashboard</a></li>
             <li><a href="{{ route('logout') }}">Desconectar</a></li>
         @else
             <li><a href="{{ route('login.create') }}">Login</a></li>
