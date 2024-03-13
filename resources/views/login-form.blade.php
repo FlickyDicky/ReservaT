@@ -1,27 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel='icon' href='{{ asset('favicon.ico') }}' type='image/x-icon'/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>¡Bienvenido a reserva·T!</title>
-</head>
+@section('title', 'Log in')
 
-<body>
-    <!-- si existe una cookie con el nombre cliente_tipo y su valor es C mostrar x-navbar-cliente -->
-    <x-selector-nav />
-    <!-- si hay una cookie, mostrar el saludo -->
-
+@section('content')
+    
     <div class="container">
-        <x-login />
+        <div class="form">
+            <form method="POST" action="{{ route('login') }}" class="flex-item">
+                @csrf
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" required autofocus class="form-control">
+                    <!-- si el email no es correcto-->
+                    @error('email')
+                        <span class="text-danger">
+                            <strong>Not valid email</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn primary-btn">
+                        Log in
+                    </button>
+                </div>
+                <div class="form-group">
+                    <a href="{{ route('register.create') }}" class="btn btn-link">¿No tienes cuenta? Crea una aquí.</a>
+                </div>
+            </form>
+            <div class="form-img flex-item">
+                {{-- logo showcase --}}
+                <img src="{{ asset('img/logo-light.png') }}" alt="logo">
+            </div>
+        </div>
+        
     </div>
 
-</body>
-
-</html>
+@endsection

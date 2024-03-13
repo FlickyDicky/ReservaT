@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     public function login(Request $request)
     {
@@ -21,11 +21,16 @@ class LoginController extends Controller
             // Authentication successful
             $user = Auth::user();
 
-            return redirect()->route('mostrar_datos');
+            return redirect()->route('welcome');
         } else {
             // Authentication failed
-            return redirect()->route('welcome');
+            return redirect()->route('login')->with('error', 'Invalid email or password. Please try again.');
         }
+    }
+
+    public function create()
+    {
+        return view('login-form');
     }
 
     public function mostrar_datos()
@@ -37,10 +42,6 @@ class LoginController extends Controller
             'email' => $user->email,
             'foto_perfil' => $user->foto,
         ]);
-    }
-
-    public function mostrar_perfil(){
-
     }
 
     public function logout()

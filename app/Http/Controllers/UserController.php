@@ -9,34 +9,34 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 
-class ClienteController extends Controller
+class UserController extends Controller
 {
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:255',
+            'nombre' => 'required|max:255',
             'apellido' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'telefono' => 'required|max:255',
             'password' => 'required|min:8|confirmed',
         ]);
 
-        $cliente = new User();
-        $cliente->nombre = $request->name;
-        $cliente->apellidos = $request->apellido;
-        $cliente->email = $request->email;
-        $cliente->direccion = $request->direccion;
-        $cliente->municipio = $request->municipio;
-        $cliente->telefono = $request->telefono;
-        $cliente->password = Hash::make($request->password);
-        $cliente->tipo = 'C';
-        $cliente->save();
+        $user = new User();
+        $user->nombre = $request->nombre;
+        $user->apellidos = $request->apellido;
+        $user->email = $request->email;
+        $user->direccion = $request->direccion;
+        $user->municipio = $request->municipio;
+        $user->telefono = $request->telefono;
+        $user->password = Hash::make($request->password);
+        $user->tipo = 'C';
+        $user->save();
         return redirect()->route('login');
     }
 
     public function create()
     {
-        return view('registrar-cliente');
+        return view('register-user');
     }
 
     public function uploadProfilePhoto(Request $request)

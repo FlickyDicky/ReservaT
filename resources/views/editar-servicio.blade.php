@@ -1,3 +1,8 @@
+@extends('layout')
+
+@section('title', 'Editar Servicios')
+
+@section('content')
 <form method="POST" action="{{ route('editar_servicio')}}">
     @csrf
     <input type="hidden" name="id" value="{{$servicio->id}}">
@@ -15,3 +20,5 @@
     <input type="number" name="duracion" value="{{$servicio->duracion}}" placeholder="{{$servicio->duracion}}">
     <button type="submit">Editar</button>
 </form>
+
+@endsection

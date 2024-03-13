@@ -13,48 +13,43 @@ class ServicioController extends Controller
     //     return view('servicios');
     // }
 
-    public function create(){
+    public function index()
+    {
         //coge los servicios asociados al id de esta empresa
         $servicios = Servicio::where('empresa_id', auth()->user()->empresa->id)->get();
 
         return view('servicios', compact('servicios'));
     }
 
-    public function new_servicio()
+    public function create()
     {
-        return view('nuevo-servicio');
+        return view('form-servicio');
     }
 
-    public function create_servicio(Request $request)
-{
-    $servicio = new Servicio();
-    $servicio->nombre = $request->nombre;
-    $servicio->descripcion = $request->descripcion;
-    $servicio->precio = $request->precio;
-    $servicio->empresa_id = auth()->user()->empresa->id; //coge el id de la empresa
-
-
-    if (auth()->user()->empresa->horario) {
+    public function store(Request $request)
+    {
+        $servicio = new Servicio();
+        $servicio->nombre = $request->nombre;
+        $servicio->descripcion = $request->descripcion;
+        $servicio->precio = $request->precio;
+        $servicio->empresa_id = auth()->user()->empresa->id; //coge el id de la empresa
         $servicio->horario_id = auth()->user()->empresa->horario->id; //coge el horario asociado a la empresa
-    } else {
-        // Handle the case where the empresa does not have a horario
-        // You might want to redirect back with an error message
-        return redirect()->back()->withErrors(['horario' => 'La empresa no tiene un horario asociado.']);
+        $servicio->duracion = $request->duracion;
+        $servicio->save();
+        // if (auth()->user()->empresa->horario) {
+        // } else {
+        //     return redirect()->back()->withErrors(['horario' => 'La empresa no tiene un horario asociado.']);
+        // }
+        return redirect()->route('servicios');
     }
 
-    $servicio->duracion = $request->duracion;
-    $servicio->save();
-
-    return redirect()->route('servicios');
-}
+    // public function update(Request $request)
+    // {
+    //     $servicio = Servicio::find($request->id);
+    //     return view('update-servicio', ['servicio' => $servicio]);
+    // }
 
     public function update(Request $request)
-    {
-        $servicio = Servicio::find($request->id);
-        return view('editar-servicio', ['servicio' => $servicio]);
-    }
-
-    public function update_servicio(Request $request)
     {
         $servicio = Servicio::find($request->id);
 
@@ -75,7 +70,8 @@ class ServicioController extends Controller
         return redirect()->route('servicios');
     }
 
-    public function delete(Request $request){
+    public function destroy(Request $request)
+    {
         $servicio = Servicio::find($request->id);
         if ($servicio) {
             $servicio->delete();

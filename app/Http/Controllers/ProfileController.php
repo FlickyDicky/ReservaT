@@ -7,23 +7,16 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
-class PerfilController extends Controller
+class ProfileController extends Controller
 {
     //create the perfil view
-    public function create(){
-
-        $user = Auth::user();
-        return view('perfil', ['user', $user]);
-
-    }
-
-    public function show_update()
+    public function create()
     {
-        $user = Auth::user();
 
-        return view('editar-perfil', ['user' => $user]);
+        $user = Auth::user();
+        return view('editar-perfil', ['user', $user]);
     }
-    
+
     //update the perfil
     public function update(Request $request)
     {
@@ -52,17 +45,18 @@ class PerfilController extends Controller
             $empresa->save();
         }
 
-        if ($user instanceof User){
+        if ($user instanceof User) {
             $user->save();
         }
 
-        return redirect()->route('mostrar_perfil');
+        return redirect()->route('perfil');
     }
 
-    public function delete(){
+    public function destroy()
+    {
         $user = Auth::user();
-        if ($user instanceof User){
-            if($user->tipo == 'E'){
+        if ($user instanceof User) {
+            if ($user->tipo == 'E') {
                 $user->empresa->delete();
             }
             $user->delete();

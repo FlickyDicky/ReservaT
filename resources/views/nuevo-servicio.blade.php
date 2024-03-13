@@ -1,4 +1,8 @@
+@extends('layout')
 
+@section('title', 'Dar de alta un servicio nuevo')
+
+@section('content')
 <form action="{{ route ('create_servicio')}}" method='POST'>
     @csrf
     <label for="nombre">Nombre del Servicio</label>
@@ -13,3 +17,5 @@
     <button type="submit">Crear un nuevo servicio</button>
 
 </form>
+
+@endsection
