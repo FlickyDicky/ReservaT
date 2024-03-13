@@ -49,7 +49,7 @@ Route::get('/upload-profile-photo', function () {
 Route::post('/post-photo', [UserController::class, 'uploadProfilePhoto'])->name('photo.upload');
 
 //Mostrar y editar el perfil
-Route::get('/profile/{user}', [ProfileController::class, 'create'])->name('profile.form.create')->middleware('auth'); //muestra la vista del perfil
+Route::get('/profile/{user}', [ProfileController::class, 'create'])->name('profile.create')->middleware('auth'); //muestra la vista del perfil
 
 Route::post('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth'); //actualiza el perfil
 

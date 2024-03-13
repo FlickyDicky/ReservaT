@@ -25,10 +25,11 @@
         var(--complementary-color) 0%,
         var(--complementary-color-dark) 100%
     );
+    --background-img: url("../img/background.png");
 }
 
 body {
-    background-image: url("../img/logo-t.png");
+    background-image: var(--background-img);
 }
 
 nav {
@@ -175,10 +176,6 @@ nav button:hover {
 
 }
 
-.login-form form {
-    width: 50%;
-}
-
 .flex-item {
     flex-grow: 1;
     flex-basis: 0;
@@ -195,11 +192,11 @@ nav button:hover {
     background-color: white;
 }
 
-.login-form img {
+.form img {
     transition: transform 200ms;
 }
 
-.login-form img:hover {
+.form img:hover {
     transform: scale(1.05);
 }
 
@@ -241,11 +238,11 @@ nav button:hover {
         justify-content: center;
         margin-left: auto;
     }
-    .login-form .form-img {
+    .form .form-img {
         display: none;
     }
 
-    .login-form {
+    .form {
         width: max-content;
     }
 
