@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServicioController;
 use App\Models\Servicio;
@@ -62,7 +63,7 @@ Route::post('/delete', [ProfileController::class, 'destroy'])->name('eliminar_pe
 //Gestión de servicios
 Route::get('/servicios', [ServicioController::class, 'index'])->name('servicios.index'); //muestra los servicios
 
-Route::get('/new-servicio', [ServicioController::class, 'show'])->name('servicios.form.create'); //muestra el formulario para crear un servicio
+Route::get('/new-servicio', [ServicioController::class, 'create'])->name('servicios.form.create'); //muestra el formulario para crear un servicio
 
 // Route::get('/create_servicio', [ServicioController::class, 'create'])->name('servicios.create'); //crea un servicio
 
@@ -75,3 +76,8 @@ Route::post('/update-servicio/{servicio}', [ServicioController::class, 'update']
 
 Route::post('/delete-servicio/{servicio}', [ServicioController::class, 'destroy'])->name('servicios.destroy');
 
+//Reserva
+
+Route::get('/Reserva', [ReservaController::class, 'index'])->name('reservas.index'); //muestra el Reserva
+
+Route::post('/mostrar-Reserva', [ReservaController::class, 'show'])->name('reservas.show'); //guarda el Reserva

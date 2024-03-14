@@ -20,12 +20,7 @@ class ServicioController extends Controller
 
         return view('form-servicio', compact('servicios'));
     }
-
-    // public function create()
-    // {
-    //     return view('form-servicio');
-    // }
-
+    //almacenar la información del servicio
     public function store(Request $request)
     {
         $servicio = new Servicio();
@@ -43,7 +38,8 @@ class ServicioController extends Controller
         return redirect()->route('servicios.index');
     }
 
-    public function show(Request $request)
+// mostrar la vista para un nuevo servicio
+    public function create(Request $request)
     {
         $servicio = Servicio::find($request->id);
         return view('nuevo-servicio', ['servicio' => $servicio]);
