@@ -1,5 +1,5 @@
 <nav>
-    <li><a href=""><img src="{{ asset('img/logo-negativo.svg') }}" class="nav-logo" alt=""></a></li>
+    <li><a href="{{ route('welcome') }}"><img src="{{ asset('img/logo-negativo.svg') }}" class="nav-logo" alt=""></a></li>
     <ul class="nav-links">
         @if (Auth::check())
             <li><a href="{{ route('profile.create', ['user' => auth()->user()->id]) }}">Dashboard</a></li>

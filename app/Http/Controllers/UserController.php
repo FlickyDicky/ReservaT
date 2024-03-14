@@ -39,35 +39,4 @@ class UserController extends Controller
         return view('register-user');
     }
 
-    public function uploadProfilePhoto(Request $request)
-    {
-        $request->validate([
-            'photo' => 'required|image|max:2048',
-        ]);
-
-        $user = Auth::user(); // Get the currently authenticated user
-
-        if ($user) {
-            // Check if the user already has a photo or the default value
-            if ($user->foto !== '0') {
-                // Remove the '/storage/' prefix before deleting the file
-                Storage::delete($user->foto);
-            }
-
-
-            // Store the newly uploaded photo
-            $photoPath = $request->file('photo')->store('public/profile-photos');
-            $user->foto = Storage::url($photoPath);
-            if ($user instanceof User) {
-                $user->save();
-            }
-
-            // Optionally, you can return a success message or redirect the user
-            return redirect()->route('welcome')->with('success', 'Profile photo uploaded successfully.');
-        } else {
-            // Handle the case where the user does not exist
-            return redirect()->back()->with('error', 'User not found.');
-        }
-    }
-
 }

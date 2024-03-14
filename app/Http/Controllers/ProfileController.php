@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 
 class ProfileController extends Controller
@@ -62,5 +64,43 @@ class ProfileController extends Controller
             $user->delete();
         }
         return redirect()->route('welcome');
+    }
+    public function uploadProfilePhoto(Request $request)
+    {
+        $request->validate([
+            'photo' => 'required|image|max:2048',
+        ]);
+
+        $user = Auth::user(); // Get the currently authenticated user
+
+        if ($user) {
+            // Check if the user already has a photo or the default value
+            if ($user->foto !== '0') {
+                // Get the full path to the file
+                $filePath = public_path($user->foto);
+                // Check if the file exists before attempting to delete
+                if (file_exists($filePath)) {
+                    try {
+                        unlink($filePath);
+                    } catch (\Exception $e) {
+                        // Log the deletion error
+                        Log::error('Failed to delete file: ' . $e->getMessage());
+                    }
+                }
+            }
+
+            // Store the newly uploaded photo
+            $photoPath = $request->file('photo')->store('public/profile-photos');
+            $user->foto = str_replace('public/', 'storage/', $photoPath);
+            if ($user instanceof User) {
+                $user->save();
+            }
+
+            // Optionally, you can return a success message or redirect the user
+            return redirect()->route('profile.create', ['user' => auth()->id()]);
+        } else {
+            // Handle the case where the user does not exist
+            return redirect()->back()->with('error', 'User not found.');
+        }
     }
 }

@@ -46,7 +46,7 @@ Route::get('/upload-profile-photo', function () {
     return view('foto');
 })->name('photo.create');
 
-Route::post('/post-photo', [UserController::class, 'uploadProfilePhoto'])->name('photo.upload');
+Route::post('/post-photo', [ProfileController::class, 'uploadProfilePhoto'])->name('photo.upload');
 
 //Mostrar y editar el perfil
 Route::get('/profile/{user}', function($user){
@@ -56,7 +56,7 @@ Route::get('/profile/{user}', function($user){
 
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update'); //actualiza el perfil
 
-Route::post('/delete', [ProfileController::class, 'destroy'])->name('eliminar_perfil');
+Route::post('/delete', [ProfileController::class, 'destroy'])->name('profile.destroy'); //borra el perfil
 
 //Gestión de servicios
 Route::get('/servicios', [ServicioController::class, 'index'])->name('servicios.index');
