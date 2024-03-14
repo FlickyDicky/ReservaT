@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- formulario de registro con nombre apellido email telefono contraseña verificar contraseña-->
-<form method="POST" action="{{ route('registrar_empresa') }}">
+<form method="POST" action="{{ route('company.store') }}">
     @csrf
     <div class="form-group">
         <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Empresa') }}</label>
@@ -48,7 +48,7 @@
     <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
             <button type="submit" class="btn btn-primary">
-                {{ __('Registrarse') }} 
+                {{ __('Registrarse') }}
             </button>
         </div>
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServicioController;
+use App\Models\Servicio;
 
 // ...
 
@@ -27,21 +28,21 @@ use App\Http\Controllers\ServicioController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
+//registro de usuarios
 Route::get('/register', [UserController::class, 'create'])->name('register.create');
 
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
-
+//registro de empresas
 Route::post('/register-company', [EmpresaController::class, 'store'])->name('company.store');
 
 Route::get('/register-company', [EmpresaController::class, 'create'])->name('company.create');
-
+//inicio y cierre de sesión
 Route::get('/login', [AuthController::class, 'create'])->name('login.create');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
+//carga de fotos
 Route::get('/upload-profile-photo', function () {
     return view('foto');
 })->name('photo.create');
@@ -59,17 +60,16 @@ Route::post('/profile', [ProfileController::class, 'update'])->name('profile.upd
 Route::post('/delete', [ProfileController::class, 'destroy'])->name('eliminar_perfil');
 
 //Gestión de servicios
-Route::get('/servicios', [ServicioController::class, 'index'])->name('servicios.index');
+Route::get('/servicios', [ServicioController::class, 'index'])->name('servicios.index'); //muestra los servicios
 
-Route::get('/new-servicio', function (){
-    return view('form-servicio');
-})->name('servicios.form.create');
+Route::get('/new-servicio', [ServicioController::class, 'show'])->name('servicios.form.create'); //muestra el formulario para crear un servicio
 
-Route::post('/create_servicio', [ServicioController::class, 'create'])->name('servicios.create');
+// Route::get('/create_servicio', [ServicioController::class, 'create'])->name('servicios.create'); //crea un servicio
 
-Route::get('/update-servicio/{servicio}', function($servicio){
-    return view('update-servicio', ['servicio' => $servicio]);
-})->name('servicios.form.update');
+Route::post('/new-servicio', [ServicioController::class, 'store'])->name('servicios.store'); //guarda el servicio
+
+Route::get('/update-servicio/{servicio}', [ServicioController::class, 'edit'])->name('servicios.form.update');
+
 
 Route::post('/update-servicio/{servicio}', [ServicioController::class, 'update'])->name('servicios.update');
 
