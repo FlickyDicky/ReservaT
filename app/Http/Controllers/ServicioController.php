@@ -18,14 +18,9 @@ class ServicioController extends Controller
         //coge los servicios asociados al id de esta empresa
         $servicios = Servicio::where('empresa_id', auth()->user()->empresa->id)->get();
 
-        return view('servicios', compact('servicios'));
+        return view('form-servicio', compact('servicios'));
     }
-
-    public function create()
-    {
-        return view('form-servicio');
-    }
-
+    //almacenar la información del servicio
     public function store(Request $request)
     {
         $servicio = new Servicio();
@@ -40,14 +35,21 @@ class ServicioController extends Controller
         // } else {
         //     return redirect()->back()->withErrors(['horario' => 'La empresa no tiene un horario asociado.']);
         // }
-        return redirect()->route('servicios');
+        return redirect()->route('servicios.index');
     }
 
-    // public function update(Request $request)
-    // {
-    //     $servicio = Servicio::find($request->id);
-    //     return view('update-servicio', ['servicio' => $servicio]);
-    // }
+// mostrar la vista para un nuevo servicio
+    public function create(Request $request)
+    {
+        $servicio = Servicio::find($request->id);
+        return view('nuevo-servicio', ['servicio' => $servicio]);
+    }
+
+    public function edit(Request $request)
+    {
+        $servicio = Servicio::find($request->id);
+        return view('editar-servicio', ['servicio' => $servicio]);
+    }
 
     public function update(Request $request)
     {
@@ -67,7 +69,7 @@ class ServicioController extends Controller
             $servicio->duracion = $request->duracion;
             $servicio->save();
         }
-        return redirect()->route('servicios');
+        return redirect()->route('servicios.index');
     }
 
     public function destroy(Request $request)
@@ -76,6 +78,6 @@ class ServicioController extends Controller
         if ($servicio) {
             $servicio->delete();
         }
-        return redirect()->route('servicios');
+        return redirect()->route('servicios.index');
     }
 }

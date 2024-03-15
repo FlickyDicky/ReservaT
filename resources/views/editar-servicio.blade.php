@@ -3,7 +3,7 @@
 @section('title', 'Editar Servicios')
 
 @section('content')
-<form method="POST" action="{{ route('editar_servicio')}}">
+<form method="POST" action="{{ route('servicios.update', ['servicio', $servicio->id])}}">
     @csrf
     <input type="hidden" name="id" value="{{$servicio->id}}">
 

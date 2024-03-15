@@ -3,7 +3,7 @@
 @section('title', 'Dar de alta un servicio nuevo')
 
 @section('content')
-<form action="{{ route ('create_servicio')}}" method='POST'>
+<form action="{{ route ('servicios.store')}}" method='POST'>
     @csrf
     <label for="nombre">Nombre del Servicio</label>
     <input type="text" name="nombre" id="nombre" required>
