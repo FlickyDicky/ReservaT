@@ -18,7 +18,7 @@ class ServicioController extends Controller
         //coge los servicios asociados al id de esta empresa
         $servicios = Servicio::where('empresa_id', auth()->user()->empresa->id)->get();
 
-        return view('form-servicio', compact('servicios'));
+        return view('servicios', compact('servicios'));
     }
     //almacenar la información del servicio
     public function store(Request $request)
@@ -38,17 +38,16 @@ class ServicioController extends Controller
         return redirect()->route('servicios.index');
     }
 
-// mostrar la vista para un nuevo servicio
-    public function create(Request $request)
+    // mostrar la vista para un nuevo servicio
+    public function create()
     {
-        $servicio = Servicio::find($request->id);
-        return view('form-servicio', ['servicio' => $servicio]);
+        return view('form-servicio');
     }
 
-    public function edit(Request $request)
+    public function edit($servicio)
     {
-        $servicio = Servicio::find($request->id);
-        return view('editar-servicio', ['servicio' => $servicio]);
+        $servicioObject = Servicio::find($servicio);
+        return view('editar-servicio', ['servicio' => $servicioObject]);
     }
 
     public function update(Request $request)
@@ -72,12 +71,15 @@ class ServicioController extends Controller
         return redirect()->route('servicios.index');
     }
 
-    public function destroy(Request $request)
-    {
-        $servicio = Servicio::find($request->id);
-        if ($servicio) {
-            $servicio->delete();
-        }
-        return redirect()->route('servicios.index');
+    public function destroy($servicio)
+{
+    $servicio = Servicio::find($servicio);
+    
+    if ($servicio) {
+        $servicio->delete();
+        return redirect()->route('servicios.index')->with('success', 'Service deleted successfully.');
+    } else {
+        return redirect()->route('servicios.index')->with('error', 'Service not found.');
     }
+}
 }

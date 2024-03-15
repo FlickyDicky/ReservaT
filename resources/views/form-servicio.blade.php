@@ -15,7 +15,6 @@
     <label for="duracion">Duración del Servicio</label>
     <input type="number" name="duracion" id="duracion" required> minutos
     <button type="submit">Crear un nuevo servicio</button>
-
 </form>
 
 @endsection

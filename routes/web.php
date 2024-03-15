@@ -61,17 +61,17 @@ Route::post('/delete', [ProfileController::class, 'destroy'])->name('profile.des
 //Gestión de servicios
 Route::get('/servicios', [ServicioController::class, 'index'])->name('servicios.index');
 
-Route::get('/new-servicio', function (){
-    return view('form-servicio');
-})->name('servicios.form.create');
+Route::get('/reservas', [ServicioController::class, 'index'])->name('reservas.index');
 
-Route::post('/create_servicio', [ServicioController::class, 'create'])->name('servicios.create');
+Route::get('/new-servicio', [ServicioController::class, 'create'])->name('servicios.create');
 
-Route::get('/update-servicio/{servicio}', function($servicio){
-    return view('update-servicio', ['servicio' => $servicio]);
-})->name('servicios.form.update');
+// Route to render the edit servicio view
+Route::get('/update-servicio/{servicio}', [ServicioController::class, 'edit'])->name('servicios.edit');
 
-Route::post('/update-servicio/{servicio}', [ServicioController::class, 'update'])->name('servicios.update');
+// Route to handle the update request
+Route::put('/servicios/{servicio}', [ServicioController::class, 'update'])->name('servicios.update');
 
-Route::post('/delete-servicio/{servicio}', [ServicioController::class, 'destroy'])->name('servicios.destroy');
+Route::post('/store-servicio', [ServicioController::class, 'store'])->name('servicios.store');
+
+Route::delete('/delete-servicio/{servicio}', [ServicioController::class, 'destroy'])->name('servicios.destroy');
 
