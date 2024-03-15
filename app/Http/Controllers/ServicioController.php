@@ -42,7 +42,7 @@ class ServicioController extends Controller
     public function create(Request $request)
     {
         $servicio = Servicio::find($request->id);
-        return view('nuevo-servicio', ['servicio' => $servicio]);
+        return view('form-servicio', ['servicio' => $servicio]);
     }
 
     public function edit(Request $request)

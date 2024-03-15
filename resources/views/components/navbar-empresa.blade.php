@@ -4,11 +4,13 @@
         <li><a href="{{ route('profile.create', ['user', auth()->user()->id]) }}">Perfil</a></li>
         <li><a href="{{ route('servicios.index') }}">Servicios</a></li>
         <li><a href="{{ route('reservas.index') }}">Reservas</a></li>
-        <form action=" {{ route('logout')}}">
-            <button>
-                LOG OUT
-            </button>
-        </form>
+        <div class="button-group">
+            <form action=" {{ route('logout')}}">
+                <button>
+                    LOG OUT
+                </button>
+            </form>
+        </div>
     </ul>
     <div class="burger" onclick="toggleMenu()">
         <div class="line"></div>

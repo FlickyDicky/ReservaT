@@ -1,5 +1,6 @@
 <nav>
-    <li><a href="{{ route('welcome') }}"><img src="{{ asset('img/logo-negativo.svg') }}" class="nav-logo" alt=""></a></li>
+    <li><a href="{{ route('welcome') }}"><img src="{{ asset('img/logo-negativo.svg') }}" class="nav-logo"
+                alt=""></a></li>
     <ul class="nav-links">
         @if (Auth::check())
             <li><a href="{{ route('profile.create', ['user' => auth()->user()->id]) }}">Dashboard</a></li>
@@ -11,9 +12,16 @@
             <li><a href="{{ route('register.create') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
-        <form action="{{ route('company.create') }}">
-            <button>¿TIENES UNA EMPRESA?</button>
-        </form>
+        <div class="button-group">
+            @if (Auth::check())
+                <form action="{{ route('logout') }}">
+                    <button>LOG OUT</button>
+                </form>
+            @endif
+            <form action="{{ route('company.create') }}">
+                <button>¿TIENES UNA EMPRESA?</button>
+            </form>
+        </div>
     </ul>
     <div class="burger" onclick="toggleMenu()">
         <div class="line"></div>
@@ -30,7 +38,7 @@
             <li><a href="{{ route('register.create') }}">Register</a></li>
         @endif
         <li><a href="/about">About</a></li>
-        <li><a href=" {{ route('company.create')}}">¿Tienes una empresa?</a></li>
+        <li><a href=" {{ route('company.create') }}">¿Tienes una empresa?</a></li>
     </ul>
 </nav>
 <script defer>

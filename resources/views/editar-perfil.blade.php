@@ -15,7 +15,11 @@
                         Cambiar Foto
                     </button>
                     <div class="edit-form-prfile-pic">
-                        <img src="{{ '/' . auth()->user()->foto }}" alt="Imagen de Perfil">
+                        @if (auth()->user()->foto == "0")
+                            <img src="{{ asset('storage/default-pfp/default-pfp.png') }}" alt="Imagen de Perfil">
+                        @else
+                            <img src="{{"/".auth()->user()->foto }}" alt="Imagen de Perfil">
+                        @endif
                     </div>
                 </div>
                 <hr>
@@ -111,23 +115,53 @@
                     </div>
 
                     @if (auth()->user()->tipo == 'E')
-                        <div class="form-group">
-                            <label for='nombre_empresa'>Nombre de empresa</label>
-                            <input type='text' class="form-control" name='nombre_empresa' id='nombre_empresa'
-                                value='{{ auth()->user()->empresa->nombre_empresa }}'
-                                placeholder='{{ auth()->user()->empresa->nombre_empresa }}'>
+                        <div class="form-group row">
+                            <label for="nombre_empresa"
+                                class="col-md-5 col-form-label text-md-left">{{ __('Nombre de Empresa') }}</label>
+                            <div class="col-md-7">
+                                <input disabled id="nombre_empresa" type="text" 
+                                    class="form-control @error('nombre_empresa') is-invalid @enderror"
+                                    name="nombre_empresa" value="{{ auth()->user()->empresa->nombre_empresa }}"
+                                    placeholder="{{ auth()->user()->empresa->nombre_empresa }}" required
+                                    autocomplete="nombre_empresa" autofocus>
+                                @error('nombre_empresa')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for='cif'>CIF</label>
-                            <input type='text' class="form-control" name='cif' id='cif'
-                                value='{{ auth()->user()->empresa->cif }}'
-                                placeholder='{{ auth()->user()->empresa->cif }}'>
+                        <div class="form-group row">
+                            <label for="cif"
+                                class="col-md-5 col-form-label text-md-left">{{ __('CIF') }}</label>
+                            <div class="col-md-7">
+                                <input disabled id="cif" type="text"
+                                    class="form-control @error('cif') is-invalid @enderror"
+                                    name="cif" value="{{ auth()->user()->empresa->cif }}"
+                                    placeholder="{{ auth()->user()->empresa->cif }}" required
+                                    autocomplete="cif" autofocus>
+                                @error('cif')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for='iban'>IBAN</label>
-                            <input type='text' class="form-control" name='iban' id='iban'
-                                value='{{ auth()->user()->empresa->iban }}'
-                                placeholder='{{ auth()->user()->empresa->iban }}'>
+                        <div class="form-group row">
+                            <label for="iban"
+                                class="col-md-5 col-form-label text-md-left">{{ __('IBAN') }}</label>
+                            <div class="col-md-7">
+                                <input disabled id="iban" type="text"
+                                    class="form-control @error('iban') is-invalid @enderror"
+                                    name="iban" value="{{ auth()->user()->empresa->iban }}"
+                                    placeholder="{{ auth()->user()->empresa->iban }}" required
+                                    autocomplete="iban" autofocus>
+                                @error('iban')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
                     @endif
                     <div class="form-group row mb-0">
@@ -155,8 +189,9 @@
                         <div class="form-group">
                             <label for="photo" class="btn primary-btn">
                                 Seleccionar Archivo
-                                <input type="file" class="form-control-file d-none @error('photo') is-invalid @enderror"
-                                       name="photo" id="photo" accept="image/*" onchange="displayFileName(this)">
+                                <input type="file"
+                                    class="form-control-file d-none @error('photo') is-invalid @enderror" name="photo"
+                                    id="photo" accept="image/*" onchange="displayFileName(this)">
                             </label>
                             <br>
                             <span id="file-name" class="badge badge-secondary"></span>

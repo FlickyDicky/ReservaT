@@ -137,8 +137,9 @@ nav ul a:hover {
     text-decoration: none;
 }
 
-nav form {
+nav .button-group {
     display: flex;
+    gap: 1em;
     align-items: center;
     justify-content: center;
     margin-left: auto;
