@@ -10,11 +10,12 @@
                     <div class="col">
                         <h2>Perfil</h2>
                     </div>
-                    <button type="button" class="btn primary-btn" style="height: fit-content;" data-toggle="modal" data-target="#uploadPhotoModal">
+                    <button type="button" class="btn primary-btn" style="height: fit-content;" data-toggle="modal"
+                        data-target="#uploadPhotoModal">
                         Cambiar Foto
                     </button>
                     <div class="edit-form-prfile-pic">
-                        <img src="{{ "/" . auth()->user()->foto }}" alt="Imagen de Perfil">
+                        <img src="{{ '/' . auth()->user()->foto }}" alt="Imagen de Perfil">
                     </div>
                 </div>
                 <hr>
@@ -130,7 +131,7 @@
                         </div>
                     @endif
                     <div class="form-group row mb-0">
-                        <div class="col-md-8 offset-md-5">
+                        <div class="col-md-2 offset-md-5">
                             <button type='submit' class="btn primary-btn">Editar</button>
                         </div>
                     </div>
@@ -152,22 +153,32 @@
                     <form action="{{ route('photo.upload') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="photo">Seleccionar Foto:</label>
-                            <input type="file" class="form-control-file @error('photo') is-invalid @enderror"
-                                name="photo" id="photo" accept="image/*">
+                            <label for="photo" class="btn primary-btn">
+                                Seleccionar Archivo
+                                <input type="file" class="form-control-file d-none @error('photo') is-invalid @enderror"
+                                       name="photo" id="photo" accept="image/*" onchange="displayFileName(this)">
+                            </label>
+                            <br>
+                            <span id="file-name" class="badge badge-secondary"></span>
                             @error('photo')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn primary-btn">Subir Foto</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn primary-btn">Subir Foto</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script defer>
+        function displayFileName(input) {
+            const fileName = input.files[0].name;
+            document.getElementById('file-name').innerText = fileName;
+        }
+    </script>
 @endsection

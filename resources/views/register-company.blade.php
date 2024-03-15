@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-5">
+                        <div class="col-md-2 offset-md-5">
                             <button type="submit" class="btn primary-btn">
                                 {{ __('Registrar') }}
                             </button>

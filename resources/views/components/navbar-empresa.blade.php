@@ -1,7 +1,7 @@
 <nav>
     <li><a href="{{ route('welcome') }}"><img src="{{ asset('img/logo-negativo.svg') }}" class="nav-logo" alt=""></a></li>
     <ul class="nav-links">
-        <li><a href="{{ route('profile.create') }}">Perfil</a></li>
+        <li><a href="{{ route('profile.create', ['user' => auth()->user()->id]) }}">Perfil</a></li>
         <li><a href="{{ route('servicios') }}">Servicios</a></li>
         <form action=" {{ route('desconectar')}}">
             <button>
