@@ -78,6 +78,8 @@ Route::post('/delete-servicio/{servicio}', [ServicioController::class, 'destroy'
 
 //Reserva
 
-Route::get('/Reserva', [ReservaController::class, 'index'])->name('reservas.index'); //muestra el Reserva
+Route::get('/reserva', [ReservaController::class, 'index'])->name('reservas.index'); //muestra el Reserva
 
 Route::post('/mostrar-Reserva', [ReservaController::class, 'show'])->name('reservas.show'); //guarda el Reserva
+
+Route::post('/delete-reserva/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');

@@ -17,14 +17,33 @@
 
 @if(isset($reservas))
     <h2>Reservas</h2>
-    <ul>
-        @foreach($reservas as $reserva)
-            <li>{{ $reserva->user_id }}</li>
-            <li>{{ $reserva->user->nombre }}</li>
-        @endforeach
-    </ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($reservas as $reserva)
+                <tr>
+                    <td>{{ $reserva->user->foto}}</td>
+                    <td>{{ $reserva->user->nombre }}</td>
+                    <td>{{ $reserva->fecha_reserva }}</td>
+                    <td>{{ $reserva->hora }}</td>
+                    <form action="{{ route('reservas.destroy', ['reserva' => $reserva->id]) }}" method='POST'>
+                        @csrf
+                    <td><button>Eliminar reserva</button></td>
+                    </form>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @else
-<h2>Aún no hay ninguna reserva</h2>
+    <h2>Aún no hay ninguna reserva</h2>
 @endif
 
 

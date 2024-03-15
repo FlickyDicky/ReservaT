@@ -21,4 +21,10 @@ class ReservaController extends Controller
 
         return view('form-reservas', compact('reservas'));
     }
+
+    public function destroy($id){
+        $reserva = Reserva::find($id);
+        $reserva->delete();
+        return redirect()->route('reservas.index');
+    }
 }
